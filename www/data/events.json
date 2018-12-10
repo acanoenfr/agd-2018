@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Event title",
+        "content": "Event description",
+        "start": "2019-1-15",
+        "end": null,
+        "color": "#ff0000"
+    },
+    {
+        "name": "Event 2 title",
+        "content": "Event 2 description",
+        "start": "2019-2-1",
+        "end": "2019-2-15",
+        "color": "#0000ff"
+    }
+]

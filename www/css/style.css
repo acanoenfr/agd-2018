@@ -1,0 +1,27 @@
+/* Navbar */
+
+header.navbar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 2;
+}
+.container-fluid {
+    margin-top: 56px;
+    z-index: 1;
+}
+
+/* Calendar */
+
+.container-fluid {
+    padding-top: 5rem;
+}
+
+/* Bottom buttons */
+
+.form-inline {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

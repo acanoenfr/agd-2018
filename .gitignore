@@ -12,6 +12,8 @@ package-lock.json
 
 ###> Cordova files ###
 hooks/
+platforms/
+plugins/
 res/
 www/img/
 ###< Cordova files ###
