@@ -11,9 +11,13 @@ package-lock.json
 ###< Node.js files ###
 
 ###> Cordova files ###
-hooks/
-platforms/
-plugins/
-res/
+hooks/README.md
+platforms/android/
+plugins/cordova-plugin-whitelist/
+plugins/android.json
+plugins/fetch.json
+res/icon/
+res/screen/
+res/README.md
 www/img/
 ###< Cordova files ###
