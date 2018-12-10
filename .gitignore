@@ -1,0 +1,17 @@
+###> IDE configuration ###
+.idea/
+AGD-2018.iml
+AGD-2018.code-workspace
+###< IDE configuration ###
+
+###> Node.js files ###
+node_modules/
+.npmignore
+package-lock.json
+###< Node.js files ###
+
+###> Cordova files ###
+hooks/
+res/
+www/img/
+###< Cordova files ###
