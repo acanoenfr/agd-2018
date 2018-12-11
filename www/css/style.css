@@ -70,4 +70,12 @@ button.cd-btn {
     background-color: rgba(0, 0, 0, 0);
     border-bottom: 1px solid rgba(0, 0, 0, 0);
     padding-left: 16px;
+<<<<<<< Updated upstream
+=======
+}
+
+.flex-container{
+    display: flex;
+    justify-content: space-between;
+>>>>>>> Stashed changes
 }
