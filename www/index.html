@@ -11,13 +11,22 @@
     <body>
         <header class="navbar navbar-dark bg-primary">
             <span class="navbar-brand mb-0 h1">Deadline</span>
-                    <span onclick="window.location='addEvent.html';" class="icon">
-               <i class="fas fa-plus"></i>
+            <span onclick="window.location='addEvent.html';" class="icon">
+                <i class="fas fa-plus"></i>
             </span> 
         </header>
         <div class="container-fluid">
             <div class="card">
-                <h6 class="card-header" id="monthAndYear">Mois et année</h6>
+                <div class="form-inline">
+                    <h6 class="card-header" id="monthAndYear">
+                        Mois et année
+                    </h6>
+                    <div class="cd-btn-form">
+                        <button id="previous" class="cd-btn" onclick="previous()"><i class="fas fa-chevron-left"></i></button>
+                        <button id="next" class="cd-btn" onclick="next()"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                
                 <table class="table table-bordered table-responsive-sm" id="calendar">
                     <thead>
                         <tr>
@@ -34,13 +43,12 @@
                         <!-- Days of the month -->
                     </tbody>
                 </table>
-                <div class="form-inline">
-                    <button id="previous" class="btn btn-outline-primary col-sm-6" onclick="previous()"><i class="fas fa-arrow-left"></i> Mois précédent</button>
-                    <button id="next" class="btn btn-outline-primary col-sm-6" onclick="next()">Mois suivant <i class="fas fa-arrow-right"></i></button>
-                </div>
             </div>
+            <!--<div class="form-inline">
+                <button id="previous" class="btn btn-outline-primary col-sm-6" onclick="previous()"><i class="fas fa-arrow-left"></i> Mois précédent</button>
+                <button id="next" class="btn btn-outline-primary col-sm-6" onclick="next()">Mois suivant <i class="fas fa-arrow-right"></i></button>
+            </div>-->
         </div>
-        
         <script type="text/javascript" src="cordova.js"></script>
         <script src="js/all.min.js"></script>
         <script src="js/jquery.min.js"></script>
