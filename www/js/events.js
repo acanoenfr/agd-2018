@@ -22,6 +22,9 @@ const showEvents = () => {
                 icon.setAttribute('class', 'fas fa-circle')
                 icon.setAttribute('style', `color: ${event.color}; font-size: .5rem;`)
                 element.appendChild(icon)
+                element.addEventListener('click', function(){
+                    window.location='modSupDeadline.html';
+                     }); 
             }
         })
     })
