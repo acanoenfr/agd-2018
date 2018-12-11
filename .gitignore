@@ -15,6 +15,7 @@ package-lock.json
 hooks/README.md
 platforms/android/
 plugins/cordova-plugin-whitelist/
+plugins/cordova-plugin-file/
 plugins/android.json
 plugins/fetch.json
 res/icon/
