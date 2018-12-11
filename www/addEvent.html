@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Calendrier | JavaScript</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+        <style type="text/css">
+
+			.cElemDatePicker
+			{
+				font-size: 14px;
+			}
+		
+			#ipAlertStartEnd, #ipAlertTitle
+			{
+				/*display:none;*/
+			}
+            .card-fade{
+                width: 400px;
+                height: 300px;
+                margin: auto;
+            }
+		
+		</style>
+        <script type="text/javascript">
+            var oCal1, sInputTZOffset = "-00:00";
+		
+			$(document).ready(function()
+			{
+                var event = jQuery.Event("submit");
+                $(".form-event").trigger("event");
+                if(event.isDefaultPrevented() ){
+                    
+                }
+                
+            }
+        </script>
+    </head>
+    <body>
+        <div id="card" class="container col-sm-4 col-md-7 col-lg-4 mt-5">
+            <h1>Calendrier</h1>
+            <div class="card">
+                <h3 class="card-header" id="monthAndYear">Mois et année</h3>
+                <table class="table table-bordered table-responsive-sm" id="calendar">
+                    <thead>
+                        <tr>
+                            <th>Dim</th>
+                            <th>Lun</th>
+                            <th>Mar</th>
+                            <th>Mer</th>
+                            <th>Jeu</th>
+                            <th>Ven</th>
+                            <th>Sam</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body"></tbody>
+                </table>
+                <div class="form-inline">
+                    <button class="btn btn-outline-primary col-sm-6" onclick="previous()">Mois précédent</button>
+                    <button class="btn btn-outline-primary col-sm-6" onclick="next()">Mois suivant</button>
+                </div>
+            </div>
+        </div>
+        <div id="form-event" class="card-fade">
+            <div class="card-dtpicker"></div>
+            <div class="cardForm-dialog">
+                <div class="cardForm-content">
+                    <form> 
+                        <div class="cardForm-header">
+                                    Ajout d'événement
+                            </div>
+                        <div id="ipAlertTitle" class="alert alert-danger" role="alert">Le titre ne doit pas être vide
+                            </div>
+                        <div id="ipTittle-group" class="form-group">
+                            <label for="ipTitle">Titre : </label>
+                            <input type="text" class="form-control" id="ipTitle" placeholder="Titre">
+                        </div>
+                        <div id="ipAllDay-group" class="checkbox">
+                            <label>
+                                <input id="ipAllDay" type="checkbox" checked> Tous les jours
+                            </label>
+                        </div>
+                        <div id="ipAlertStartEnd" class="alert alert-danger" role="alert">
+                           La date et l'heure de début doivent être antérieures à la date et heure de fin 
+                        </div>
+                        <div id="ipStart-group" class="form-group">
+                            <label for="ipStart">Date Début : </label>
+                            <input type="text" class="form-control" id="ipStart" data-field="date" placeholder="Début">
+                        </div>
+                        <div id="ipEnd-group" class="form-group">
+                            <label>Date Fin : </label>
+                            <input type="text" class="form-control" id="ipEnd" data-field="date" placeholder="Fin">
+                        </div>
+                        <div id="idEnd-group" class="form-group">
+                            <label for="ipDesc">Description: </label>
+                            <textarea class="form-control" rows="3" id="ipDesc" placeholder="Description"></textarea>
+                        </div>
+                        <div class="cardForm-footer">
+                            <button type="button" class="btn btn-default form-btn" data-dismiss="card">Fermer</button>
+                            <button type="button" class="btn btn-default form-btn"> Soumettre</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="script.js"></script>
+        <script src="events.js"></script>
+    </body>
+</html>
