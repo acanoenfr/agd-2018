@@ -17,3 +17,10 @@ cordova platform add android
 ```bash
 cordova run android [--device]
 ```
+
+If cordova is not installed, please execute that command
+```bash
+npm install -g cordova
+```
+
+If Node.js is not installed, please [download this](https://nodejs.org/fr/)
