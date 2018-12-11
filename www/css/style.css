@@ -25,6 +25,7 @@ header.navbar {
     left: 0;
     right: 0;
 }
-.fas{
-    color: brown;
+.icon{
+    font-size: 31px; 
+    color: white;
 }
