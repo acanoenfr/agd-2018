@@ -17,6 +17,7 @@ const showEvents = () => {
             date = event.start.split('-')
             if (currentMonth == date[1] - 1 && currentYear == date[0]) {
                 let element = document.getElementById(event.start)
+                // element.setAttribute('class', 'event')
                 let icon = document.createElement('i')
                 icon.setAttribute('class', 'fas fa-circle')
                 icon.setAttribute('style', `color: ${event.color}; font-size: .5rem;`)
@@ -24,8 +25,20 @@ const showEvents = () => {
             }
         })
     })
+    // showEvent()
 }
-
+/*
+const showEvent = () => {
+    let eventsCalendar = document.getElementsByClassName('event')
+    console.log(eventsCalendar)
+    if (eventsCalendar.length > 0) {
+        console.log(eventsCalendar[0])
+        eventsCalendar.forEach((eventCalendar) => {
+            console.log(eventCalendar)
+        })
+    }
+}
+*/
 showEvents()
 
 document.getElementById('previous').addEventListener('click', showEvents)
