@@ -29,6 +29,13 @@ td {
 }
 
 
+/* Boutons dans le header */
+
+svg.svg-inline--fa.fa-plus.fa-w-14 {
+    width: 20px;
+}
+
+
 /* Boutons en bas de page */
 
 .form-inline {
