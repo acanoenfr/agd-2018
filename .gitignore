@@ -17,6 +17,7 @@ platforms/android/
 platforms/browser/
 plugins/cordova-plugin-whitelist/
 plugins/cordova-plugin-file/
+plugins/cordova-plugin-sqlite-2/
 plugins/android.json
 plugins/browser.json
 plugins/fetch.json
