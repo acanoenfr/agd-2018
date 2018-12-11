@@ -17,7 +17,7 @@ cordova platform add android
 ```bash
 cordova run android [--device]
 ```
-(--device est là pour lancer l'application sur votre smartphone via adb.)
+(--device est là pour lancer l'application sur votre smartphone via adb. Sinon, ne l'écrivez pas !)
 
 Si Cordova n'est pas installé, exécutez cette commande
 ```bash
