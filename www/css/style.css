@@ -56,7 +56,6 @@ td {
     right: 0;
     margin-right: 8px;
 }
-/* icon ajouts */
 
 button.cd-btn {
     background: none; border: none;
@@ -72,4 +71,3 @@ button.cd-btn {
     border-bottom: 1px solid rgba(0, 0, 0, 0);
     padding-left: 16px;
 }
-
