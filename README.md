@@ -1,26 +1,27 @@
 # AGD-2018
 Application gestion de deadlines
 
-## Installation guide
+## Guide d'installation
 
-1. Install cordova source
+1. Installer Cordova source
 ```bash
 npm install
 ```
 
-2. Create android project
+2. Ajouter Android aux platformes
 ```bash
 cordova platform add android
 ```
 
-3. Test your application
+3. Tester l'application
 ```bash
 cordova run android [--device]
 ```
+(--device est là pour lancer l'application sur votre smartphone via adb.)
 
-If cordova is not installed, please execute that command
+Si Cordova n'est pas installé, exécutez cette commande
 ```bash
 npm install -g cordova
 ```
 
-If Node.js is not installed, please [download this](https://nodejs.org/fr/)
+Si Node.JS n'est pas installé, veuillez [télécharger ceci](https://nodejs.org/fr/).
