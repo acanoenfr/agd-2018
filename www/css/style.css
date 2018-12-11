@@ -40,6 +40,14 @@ td {
     width: 5%;
 }
 
+.table th {
+    padding-left: 10px; padding-right: 10px;
+}
+
+.card {
+    font-size: 14px;
+}
+
 
 /* Header du calendrier */
 
