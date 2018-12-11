@@ -5,8 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Calendrier | JavaScript</title>
+        <link rel="stylesheet" href="css/jquery-ui.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <style type="text/css">
 
 			.cElemDatePicker
@@ -23,18 +24,25 @@
                 height: 300px;
                 margin: auto;
             }
+            #form-event{
+                margin-top: 30%;
+            }
 		
 		</style>
     </head>
+ 
+    <header class="navbar navbar-dark bg-primary">
+            <span class="navbar-brand mb-0 h1">Ajouter événement</span>
+                    <span onclick="window.location='index.html';" class="icon">
+                            <i class="fas fa-arrow-left"></i>
+            </span> 
+        </header>
     <body>
         <div id="form-event" class="card-fade">
             <div class="card-dtpicker"></div>
             <div class="cardForm-dialog">
                 <div class="cardForm-content">
                     <form> 
-                        <div class="cardForm-header">
-                                    Ajout d'événement
-                            </div>
                         <div id="ipAlertTitle" class="alert alert-danger" role="alert">Le titre ne doit pas être vide
                             </div>
                         <div id="ipTittle-group" class="form-group">
@@ -51,7 +59,7 @@
                         </div>
                         <div id="ipStart-group" class="form-group">
                             <label for="ipStart">Date Début : </label>
-                            <input type="text" class="form-control" id="ipStart" data-field="date" placeholder="Début">
+                            <input type="text" class="form-control" id="ipDebut" placeholder="Début" >
                         </div>
                         <div id="ipEnd-group" class="form-group">
                             <label>Date Fin : </label>
@@ -62,20 +70,28 @@
                             <textarea class="form-control" rows="3" id="ipDesc" placeholder="Description"></textarea>
                         </div>
                         <div class="cardForm-footer">
-                            <button type="button" class="btn btn-default form-btn" data-dismiss="card">Fermer</button>
+                            <button type="button" class="btn btn-default form-btn" onclick="window.location='index.html';"data-dismiss="card">Fermer</button>
                             <button type="submit" class="btn btn-default form-btn"> Soumettre</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-      <script type="text/javascript" src="cordova.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="cordova.js"></script>
         <script src="js/all.min.js"></script>
         <script src="js/jquery.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/script.js"></script>
         <script src="js/events.js"></script>
+
+        <script>
+                $( function() {
+                  $( "#datepicker" ).datepicker();
+                } );
+        </script>
        
     </body>
 </html>

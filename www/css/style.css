@@ -48,20 +48,20 @@ td {
     right: 0;
     margin-right: 8px;
 }
+/* icon ajouts */
 
 button.cd-btn {
     background: none; border: none;
     font-size: 1.2em;
     height: 34px; width: 34px;
 }
-
 .form-inline {
     background-color: rgba(0,0,0,.03);
     border-bottom: 1px solid rgba(0,0,0,.125);
 }
-
 .card-header {
     background-color: rgba(0, 0, 0, 0);
     border-bottom: 1px solid rgba(0, 0, 0, 0);
     padding-left: 16px;
 }
+
