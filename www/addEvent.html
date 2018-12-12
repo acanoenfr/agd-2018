@@ -16,7 +16,7 @@
 				font-size: 14px;
 			}
 		
-			#ipAlertStartEnd, #ipAlertTitle
+			#ipAlertStartEnd, 
 			{
 				display:none
 			}
@@ -31,6 +31,29 @@
             }
 		
 		</style>
+         <script type="text/javascript">
+            function recupText(){
+                var titre = document.getElementById("ipTitle").value;
+                console.log(titre); 
+                var debut = document.getElementById("ipDebut").value;
+                console.log(debut);
+                var end = document.getElementById("ipEnd").value;
+                console.log(end);
+                var desc = document.getElementById("ipDesc").value;
+                console.log(desc);
+            }
+              var myDB = window.sqlitePlugin.openDatabase({name: "agd-2018.db"});
+                myDB.transaction(function(transaction){
+                    var executeQuery = "INSERT INTO events (id, title, content, color, start, end)  VALUES (?, ?, ?, ?, ?, ?)";
+                    transaction.executeSql(executeQuery, [id, title, content, color, start, end], function(tx, result){
+                        alert('Insérer');
+                    },
+                            function(error){
+                        alert('Une erreur est survenue');
+                    });
+                });
+            
+        </script>
     </head>
  
     <header class="navbar navbar-dark bg-primary">
@@ -52,20 +75,20 @@
                             <label for="ipTitle">Titre : </label>
                             <input type="text" class="form-control" id="ipTitle" placeholder="Titre">
                         </div>
-                        <div id="ipAllDay-group" class="checkbox">
+                        <!--<div id="ipAllDay-group" class="checkbox">
                             <label>
                                 <input id="ipAllDay" type="checkbox" checked> Tous les jours
                             </label>
-                        </div>
-                        <div id="ipAlertStartEnd" class="alert alert-danger" role="alert">
+                        </div>-->
+                        <!--<div id="ipAlertStartEnd" class="alert alert-danger" role="alert">
                            La date et l'heure de début doivent être antérieures à la date et heure de fin 
-                        </div>
+                        </div>-->
                         <div id="ipStart-group" class="form-group">
-                            <label for="ipStart">Date Début : </label>
+                            <label for="ipDebut">Date Début : </label>
                             <input type="date" class="form-control" id="ipDebut" placeholder="Début">
                         </div>
                         <div id="ipEnd-group" class="form-group">
-                            <label>Date Fin : </label>
+                            <label for="ipEnd">Date Fin : </label>
                             <input type="date" class="form-control" id="ipEnd" placeholder="Fin">
                         </div>
                         <div id="idEnd-group" class="form-group">
@@ -73,7 +96,7 @@
                             <textarea class="form-control" rows="3" id="ipDesc" placeholder="Description"></textarea>
                         </div>
                         <div class="cardForm-footer">
-                           <button id="submit" type="button" class="btn btn-default form-btn" id="buttonSoum"> Soumettre</button>
+                           <button id="submit" type="button" class="btn btn-default form-btn" id="buttonSoum" onclick="recupText()"> Soumettre</button>
                         </div>
                     </form> 
                 </div>
@@ -87,21 +110,6 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/script.js"></script>
         <script src="js/events.js"></script>
-        <script type="text/javascript">
-            $(function(){
-                $("#target").submit(function(e){
-                    if($("#").val() ==" " && $("#").val() ){
-                        $('#').addClass("d-none");
-                        $('#').addClass("d-none");
-                    }
-                    else{
-                        $('#').removeClass("d-none");
-                        $('#').removeClass("d-none");
-                  
-                    }
-                    e.preventDefault();
-            });
-            });
-        </script>
+       
     </body>
 </html>
