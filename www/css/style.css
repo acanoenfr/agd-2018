@@ -7,6 +7,8 @@ header.navbar {
     z-index: 2;
 }
 
+header.navbar.bg-primary { background-color: #F44336!important; }
+
 .container-fluid {
     margin-top: 56px;
     z-index: 1;
@@ -20,9 +22,7 @@ header.navbar {
     color: white;
 }
 
-svg.svg-inline--fa.fa-plus.fa-w-14 {
-    width: 20px;
-}
+svg.svg-inline--fa.fa-plus.fa-w-14 { width: 20px; }
 
 
 /* Calendrier */
@@ -33,20 +33,14 @@ svg.svg-inline--fa.fa-plus.fa-w-14 {
 }
 
 td.bg-primary {
-    color: white;
+    background-color: #36E7F4!important;
 }
 
-td {
-    width: 5%;
-}
+td { width: 5%; }
 
-.table th {
-    padding-left: 10px; padding-right: 10px;
-}
+.table th { padding-left: 10px; padding-right: 10px; }
 
-.card {
-    font-size: 14px;
-}
+.card { font-size: 14px; }
 
 
 /* Header du calendrier */
@@ -70,12 +64,9 @@ button.cd-btn {
     background-color: rgba(0, 0, 0, 0);
     border-bottom: 1px solid rgba(0, 0, 0, 0);
     padding-left: 16px;
-<<<<<<< Updated upstream
-=======
 }
 
 .flex-container{
     display: flex;
     justify-content: space-between;
->>>>>>> Stashed changes
 }
