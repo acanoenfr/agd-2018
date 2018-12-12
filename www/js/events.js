@@ -1,4 +1,4 @@
-const readJson = (file, callback) => {
+/* const readJson = (file, callback) => {
     let rawFile = new XMLHttpRequest()
     rawFile.overrideMimeType("application/json")
     rawFile.open("GET", file, true)
@@ -8,10 +8,10 @@ const readJson = (file, callback) => {
         }
     }
     rawFile.send(null)
-}
+} */
 
 const showEvents = () => {
-    readJson("data/events.json", (data) => {
+    /* readJson("data/events.json", (data) => {
         let events = JSON.parse(data)
         events.forEach((event) => {
             date = event.start.split('-')
@@ -27,21 +27,9 @@ const showEvents = () => {
                      }); 
             }
         })
-    })
-    // showEvent()
+    }) */
 }
-/*
-const showEvent = () => {
-    let eventsCalendar = document.getElementsByClassName('event')
-    console.log(eventsCalendar)
-    if (eventsCalendar.length > 0) {
-        console.log(eventsCalendar[0])
-        eventsCalendar.forEach((eventCalendar) => {
-            console.log(eventCalendar)
-        })
-    }
-}
-*/
+
 showEvents()
 
 document.getElementById('previous').addEventListener('click', showEvents)
