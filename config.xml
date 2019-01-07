@@ -27,7 +27,9 @@
     <plugin name="cordova-plugin-sqlite-2" spec="^1.0.5" />
     <plugin name="cordova-plugin-local-notification" spec="^0.9.0-beta.2" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
+    <plugin name="cordova-plugin-headercolor" spec="^1.0.0" />
     <preference name="StatusBarBackgroundColor" value="#D32F2F" />
+    <preference name="HeaderColor" value="#F44336" />
     <engine name="android" spec="^7.1.4" />
     <engine name="browser" spec="^5.0.4" />
 </widget>
