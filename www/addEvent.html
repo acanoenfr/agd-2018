@@ -61,21 +61,21 @@
         </style>
          <script type="text/javascript">
             function recupText(){
-                var titre = document.getElementById("ipTitle").value;
+                let titre = document.getElementById("ipTitle").value;
                 console.log(titre); 
-                var debut = document.getElementById("ipDebut").value;
+                let debut = document.getElementById("ipDebut").value;
                 console.log(debut);
-                var end = document.getElementById("ipEnd").value;
+                let end = document.getElementById("ipEnd").value;
                 console.log(end);
-                var desc = document.getElementById("ipDesc").value;
+                let desc = document.getElementById("ipDesc").value;
                 console.log(desc);
 
                 // J'ai déplacé ce bout de code dans la fonction recupText() sinon ça ne se lancerait jamais !
                 // J'ai ajouté des paramètres manquant à openDatabase, d'ailleurs cette fonction fonctionne que sur mobile et pas sur navigateur
                 // Alors sortez vos émulateurs ou smartphones pour celle là, c'est (beaucoup) mieux
-                var myDB = window.sqlitePlugin.openDatabase({name: "agd-2018.db", location: 'default', androidDatabaseProvider: 'system'});
+                let myDB = window.sqlitePlugin.openDatabase({name: "agd-2018.db", location: 'default', androidDatabaseProvider: 'system'});
                 myDB.transaction(function(transaction){
-                    var executeQuery = "INSERT INTO events (id, title, content, color, start, end)  VALUES (?, ?, ?, ?, ?, ?)";
+                    let executeQuery = "INSERT INTO events (id, title, content, color, start, end)  VALUES (?, ?, ?, ?, ?, ?)";
                     transaction.executeSql(executeQuery, [id, title, content, color, start, end], function(tx, result){
                         alert('Insérer');
                     },
