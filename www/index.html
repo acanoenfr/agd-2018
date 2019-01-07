@@ -14,31 +14,6 @@
             <span onclick="window.location='addEvent.html';" class="icon">
                 <i class="fas fa-plus"></i>
             </span>
-            <script type="text/javascript">
-                // Connexion à la BDD
-                var myDB = window.sqlitePlugin.openDatabase({name: "agd-2018.db", location: 'default', androidDatabaseProvider: 'system'});
-
-                /** Attention: ce bout de code est à adapter à la page !!! **/
-                /** Pour le coup j'ai juste recopié le code d'un tuto envoyé à Maysoon **/
-                /** Y'a déjà des commentaires dessus **/
-                /** Pour plus d'exemples: https://codesundar.com/cordova-sqlite-storage/ **/
-                /** Y'a aussi une page exemple à télécharger dessus **/
-
-                // Fonction gérant la transaction SQL
-                myDB.transaction(function(transaction) {
-                    // Exécution de la requête
-                    transaction.executeSql('SELECT * FROM events', [], function (tx, results) {
-                        // On récupère les résultats qu'on met dans la variable 'len'
-                        var len = results.rows.length, i;
-                        // Lie les valeurs de len à la div à l'ID 'rowCount'
-                        $("#rowCount").append(len);
-                        // Boucle for pour afficher toutes les lignes de la table events
-                        for (i = 0; i < len; i++){
-                            $("#TableData").append("<tr><td>"+results.rows.item(i).id+"</td><td>"+results.rows.item(i).title+"</td><td>"+results.rows.item(i).desc+"</td></tr>");
-                        }
-                    }, null);
-                });
-            </script>
         </header>
         <div class="container-fluid">
             <div class="card">
@@ -71,7 +46,6 @@
             
             </tbody>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
         <script src="cordova.js"></script>
         <script src="js/all.min.js"></script>
         <script src="js/jquery.min.js"></script>
@@ -79,6 +53,7 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/script.js"></script>
         <script src="js/events.js"></script>
+        <script src="js/sqlite.js"></script>
         <script src="js/notifications-test.js"></script>
     </body>
 </html>
