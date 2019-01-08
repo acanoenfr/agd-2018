@@ -4,52 +4,35 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>Deadline</title>
-        <link rel="stylesheet" href="css/all.min.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css">
+        <style type="text/css">
+            #app {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+            }
+        </style>
     </head>
     <body>
-        <header class="navbar navbar-dark bg-primary">
-            <span class="navbar-brand mb-0 h1">Deadline</span>
-            <span onclick="window.location='addEvent.html';" class="icon">
-                <i class="fas fa-plus"></i>
-            </span>
-        </header>
-        <div class="container-fluid">
-            <div class="card">
-                <div class="form-inline">
-                    <h6 class="card-header" id="monthAndYear">Mois et année</h6>
-                    <div class="cd-btn-form">
-                        <button id="previous" class="cd-btn" onclick="previous()"><i class="fas fa-chevron-left"></i></button>
-                        <button id="next" class="cd-btn" onclick="next()"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
-                
-                <table class="table table-bordered table-responsive-sm" id="calendar">
-                    <thead>
-                        <tr>
-                            <th>Dim</th>
-                            <th>Lun</th>
-                            <th>Mar</th>
-                            <th>Mer</th>
-                            <th>Jeu</th>
-                            <th>Ven</th>
-                            <th>Sam</th>
-                        </tr>
-                    </thead>
-                    <tbody id="calendar-body">
-                        <!-- Days of the month -->
-                    </tbody>
-                </table>
-            </div>
+        <div id="app">
+            <img src="img/agd.png" alt="Logo AGD-2018" width="200">
+            <img src="img/iut.png" alt="Logo IUT" width="200">
         </div>
         <script src="cordova.js"></script>
-        <script src="js/all.min.js"></script>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/script.js"></script>
-        <script src="js/index.js"></script>
-        <script src="js/notifications-test.js"></script>
+        <script type="text/javascript">
+            let app = {
+                initialize: function () {
+                    document.addEventListener('deviceready', this.onDeviceReady.bind(this), false)
+                },
+                onDeviceReady: function () {
+                    setTimeout(function () {
+                        window.location.href = "home.html"
+                    }, 2000)
+                }
+            }
+            app.initialize()
+        </script>
     </body>
 </html>
