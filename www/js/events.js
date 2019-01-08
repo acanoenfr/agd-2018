@@ -29,9 +29,3 @@ const showEvents = () => {
         })
     })
 }
-
-showCalendar(currentMonth, currentYear)
-showEvents()
-
-document.getElementById('previous').addEventListener('click', showEvents)
-document.getElementById('next').addEventListener('click', showEvents)
