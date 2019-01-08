@@ -13,6 +13,7 @@ package-lock.json
 
 ###> Cordova files ###
 hooks/README.md
+platform-tools/
 platforms/android/
 platforms/browser/
 plugins/cordova-plugin-whitelist/

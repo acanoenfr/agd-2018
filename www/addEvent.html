@@ -22,16 +22,19 @@
                 // J'ai déplacé ce bout de code dans la fonction recupText() sinon ça ne se lancerait jamais !
                 // J'ai ajouté des paramètres manquant à openDatabase, d'ailleurs cette fonction fonctionne que sur mobile et pas sur navigateur
                 // Alors sortez vos émulateurs ou smartphones pour celle là, c'est (beaucoup) mieux
-                let myDB = window.sqlitePlugin.openDatabase({name: "agd-2018.db", location: 'default', androidDatabaseProvider: 'system'});
-                myDB.transaction(function(transaction){
-                    let executeQuery = "INSERT INTO events (id, title, content, color, start, end)  VALUES (?, ?, ?, ?, ?, ?)";
-                    transaction.executeSql(executeQuery, [id, title, content, color, start, end], function(tx, result){
-                        alert('Insérer');
-                    },
-                    function(error){
-                        alert('Une erreur est survenue');
-                    });
-                });
+                   let myDB = window.openDatabase("Events0000000", "1.0", "All Deadlines", 2000000)
+        myDB.transaction(function (txn) {
+            /*txn.executeSql("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT, color TEXT NOT NULL, start TEXT NOT NULL, end TEXT)", [], function (tx, res) {
+                console.info('Create table events')
+            }, function (tx, err) {
+                console.warn('Err[' + err.code + ']: ' + err.message)
+            })*/
+            txn.executeSql(`INSERT INTO events(title, content, color, start, end) VALUES(?, ?, ?, ?, ?)`, ['Event', '#0000ff', '2019-1-15'], function (tx, res) {
+                console.info('Insert data in events')
+            }, function (tx, err) {
+                console.warn('Err[' + err.code + ']: ' + err.message)
+            }); 
+        })
             }
             
         </script>
