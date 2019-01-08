@@ -17,14 +17,14 @@ const showEvents = () => {
             date = event.start.split('-')
             if (currentMonth == date[1] - 1 && currentYear == date[0]) {
                 let element = document.getElementById(event.start)
-                // element.setAttribute('class', 'event')
+                element.setAttribute('class', 'event')
                 let icon = document.createElement('i')
                 icon.setAttribute('class', 'fas fa-circle')
                 icon.setAttribute('style', `color: ${event.color}; font-size: .5rem;`)
                 element.appendChild(icon)
                 element.addEventListener('click', function(){
-                    window.location='modSupDeadline.html';
-                     }); 
+                    window.location = 'modSupDeadline.html'
+                })
             }
         })
     })
