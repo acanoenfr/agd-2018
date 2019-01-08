@@ -15,7 +15,7 @@ cordova platform add android
 
 3. Tester l'application
 ```bash
-cordova run android [--device]
+cordova run android --device
 ```
 (--device est là pour lancer l'application sur votre smartphone via adb. Sinon, ne l'écrivez pas !)
 
