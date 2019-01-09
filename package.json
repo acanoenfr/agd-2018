@@ -10,8 +10,13 @@
     "author": "Apache Cordova Team",
     "license": "Apache-2.0",
     "dependencies": {
+        "cordova": "^8.1.2",
         "cordova-android": "^7.1.4",
         "cordova-browser": "^5.0.4",
+<<<<<<< HEAD
+=======
+        "cordova-plugin-android-permissions": "^1.0.0",
+>>>>>>> master
         "cordova-plugin-badge": "^0.8.8",
         "cordova-plugin-browsersync": "^1.1.0",
         "cordova-plugin-file": "^6.0.1",
@@ -19,16 +24,21 @@
         "cordova-plugin-local-notification": "^0.9.0-beta.2",
         "cordova-plugin-sqlite-2": "^1.0.5",
         "cordova-plugin-statusbar": "^2.4.2",
-        "cordova-plugin-whitelist": "^1.3.3"
+        "cordova-plugin-whitelist": "^1.3.3",
+        "cordova-sqlite-storage": "^2.6.0"
     },
     "cordova": {
         "plugins": {
             "cordova-plugin-whitelist": {},
             "cordova-plugin-file": {},
-            "cordova-plugin-sqlite-2": {},
             "cordova-plugin-local-notification": {},
             "cordova-plugin-statusbar": {},
-            "cordova-plugin-headercolor": {}
+            "cordova-plugin-headercolor": {},
+            "cordova-sqlite-storage": {},
+            "cordova-plugin-sqlite-2": {},
+            "cordova-plugin-sqlite-2": {},
+            "cordova-plugin-android-permissions": {},
+            "cordova-sqlite-storage": {}
         },
         "platforms": [
             "android",

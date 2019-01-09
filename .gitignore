@@ -1,8 +1,11 @@
 ###> IDE configuration ###
 .idea/
+.vscode/
+typings/
 AGD-2018.iml
 AGD-2018.code-workspace
 .DS_Store
+.jsconfig
 ###< IDE configuration ###
 
 ###> Node.js files ###
@@ -13,17 +16,24 @@ package-lock.json
 
 ###> Cordova files ###
 hooks/README.md
+platform-tools/
 platforms/android/
 platforms/browser/
 plugins/cordova-plugin-whitelist/
 plugins/cordova-plugin-file/
 plugins/cordova-plugin-sqlite-2/
 plugins/cordova-plugin-browsersync/
+plugins/cordova-plugin-android-permissions/
+plugins/cordova-plugin-badge/
+plugins/cordova-plugin-device/
+plugins/cordova-plugin-headercolor/
+plugins/cordova-plugin-local-notification/
+plugins/cordova-plugin-statusbar/
+plugins/cordova-sqlite-storage/
 plugins/android.json
 plugins/browser.json
 plugins/fetch.json
 res/icon/
 res/screen/
 res/README.md
-www/img/
 ###< Cordova files ###
