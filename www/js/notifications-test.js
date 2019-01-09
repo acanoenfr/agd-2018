@@ -1,3 +1,9 @@
+/***************************************************************************/
+/* Ce script permet l'envoi de notifications sur le smartphone uniquement. */
+/* On peut programmer une notification pour qu'elle s'envoie à une         */
+/* certaine date ou après un certain temps.                                */
+/***************************************************************************/
+
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {

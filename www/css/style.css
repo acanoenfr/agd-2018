@@ -1,3 +1,21 @@
+/****************************/
+/* Style de la page d'intro */
+/******** index.html ********/
+
+#app {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+/******************************/
+/* Style de la page d'accueil */
+/********* home.html **********/
+
 /* Navbar */
 
 header.navbar {
@@ -63,7 +81,7 @@ button.cd-btn {
 
 /*****************************/
 /* Style de la page addEvent */
-/*****************************/
+/******* addEvent.html *******/
 
 /* Bouton d'envoi */
 
