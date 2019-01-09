@@ -32,8 +32,7 @@
             "cordova-plugin-headercolor": {},
             "cordova-sqlite-storage": {},
             "cordova-plugin-sqlite-2": {},
-            "cordova-plugin-android-permissions": {},
-            "cordova-sqlite-storage": {}
+            "cordova-plugin-android-permissions": {}
         },
         "platforms": [
             "android",

@@ -11,16 +11,8 @@ let app = {
     onDeviceReady: function () {
         let myDB = window.openDatabase("Events0000000", "1.0", "All Deadlines", 2000000)
         myDB.transaction(function (txn) {
-            txn.executeSql("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT, color TEXT NOT NULL, start TEXT NOT NULL, end TEXT)", [], function (tx, res) {
-                console.info('Create table events')
-            }, function (tx, err) {
-                console.warn('Err[' + err.code + ']: ' + err.message)
-            })
-            /* txn.executeSql(`INSERT INTO events(title, color, start, end) VALUES(?, ?, ?, ?)`, ['Rattrapage TP SQL', '#ff0000', '2019-2-14', '2019-2-28'], function (tx, res) {
-                console.info('Insert data in events')
-            }, function (tx, err) {
-                console.warn('Err[' + err.code + ']: ' + err.message)
-            }); */
+            txn.executeSql("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT, color TEXT NOT NULL, start TEXT NOT NULL, end TEXT)")
+            // txn.executeSql(`INSERT INTO events(title, color, start, end) VALUES(?, ?, ?, ?)`, ['Rattrapage TP SQL', '#ff0000', '2019-2-14', '2019-2-28'])
         })
         showCalendar(currentMonth, currentYear)
         showEvents()
@@ -34,15 +26,34 @@ let app = {
                     for (let i = 0; i < res.rows.length; i++) {
                         date = events[i].start.split('-')
                         if (currentMonth == date[1] - 1 && currentYear == date[0]) {
-                            let element = document.getElementById(events[i].start)
-                            element.setAttribute('class', 'event')
-                            let icon = document.createElement('i')
-                            icon.setAttribute('class', 'fas fa-circle')
-                            icon.setAttribute('style', `color: ${events[i].color}; font-size: .5rem;`)
-                            element.appendChild(icon)
-                            element.addEventListener('click', function(){
-                                window.location = 'modSupDeadline.html'
-                            })
+                            if (events[i].color == "#0000ff") {
+                                let elementStart = document.getElementById(events[i].start)
+                                elementStart.setAttribute('class', 'event')
+                                let icon = document.createElement('i')
+                                icon.setAttribute('class', 'fas fa-circle')
+                                icon.setAttribute('style', `color: ${events[i].color}; font-size: .5rem;`)
+                                elementStart.appendChild(icon)
+                                elementStart.addEventListener('click', function(){
+                                    window.location = 'modSupDeadline.html'
+                                })
+                            }
+                            if (events[i].color == "#ff0000") {
+                                let elementStart = document.getElementById(events[i].start)
+                                let elementEnd = document.getElementById(events[i].end)
+                                elementStart.setAttribute('class', 'event')
+                                elementEnd.setAttribute('class', 'event')
+                                let icon = document.createElement('i')
+                                icon.setAttribute('class', 'fas fa-star')
+                                icon.setAttribute('style', `color: ${events[i].color}; font-size: .5rem;`)
+                                elementStart.appendChild(icon)
+                                elementEnd.appendChild(icon)
+                                elementStart.addEventListener('click', function(){
+                                    window.location = 'modSupDeadline.html'
+                                })
+                                elementEnd.addEventListener('click', function(){
+                                    window.location = 'modSupDeadline.html'
+                                })
+                            }
                         }
                     }
                 }, function (tx, err) {
