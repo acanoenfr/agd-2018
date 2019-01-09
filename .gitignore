@@ -1,8 +1,11 @@
 ###> IDE configuration ###
 .idea/
+.vscode/
+typings/
 AGD-2018.iml
 AGD-2018.code-workspace
 .DS_Store
+.jsconfig
 ###< IDE configuration ###
 
 ###> Node.js files ###
