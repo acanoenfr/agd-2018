@@ -29,7 +29,8 @@
             "cordova-plugin-local-notification": {},
             "cordova-plugin-statusbar": {},
             "cordova-plugin-headercolor": {},
-            "cordova-sqlite-storage": {}
+            "cordova-sqlite-storage": {},
+            "cordova-plugin-sqlite-2": {}
         },
         "platforms": [
             "android",
