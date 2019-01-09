@@ -13,6 +13,7 @@
         "cordova": "^8.1.2",
         "cordova-android": "^7.1.4",
         "cordova-browser": "^5.0.4",
+        "cordova-plugin-android-permissions": "^1.0.0",
         "cordova-plugin-badge": "^0.8.8",
         "cordova-plugin-browsersync": "^1.1.0",
         "cordova-plugin-file": "^6.0.1",
@@ -31,7 +32,13 @@
             "cordova-plugin-statusbar": {},
             "cordova-plugin-headercolor": {},
             "cordova-sqlite-storage": {},
+<<<<<<< HEAD
             "cordova-plugin-sqlite-2": {}
+=======
+            "cordova-plugin-sqlite-2": {},
+            "cordova-plugin-android-permissions": {},
+            "cordova-sqlite-storage": {},
+>>>>>>> master
         },
         "platforms": [
             "android",
