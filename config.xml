@@ -37,6 +37,7 @@
     <preference name="StatusBarBackgroundColor" value="#D32F2F" />
     <plugin name="cordova-sqlite-storage" spec="^2.6.0" />
     <preference name="HeaderColor" value="#F44336" />
+    <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <engine name="android" spec="^7.1.4" />
     <engine name="browser" spec="^5.0.4" />
 </widget>
