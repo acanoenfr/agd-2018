@@ -10,6 +10,7 @@
     "author": "Apache Cordova Team",
     "license": "Apache-2.0",
     "dependencies": {
+        "cordova": "^8.1.2",
         "cordova-android": "^7.1.4",
         "cordova-browser": "^5.0.4",
         "cordova-plugin-android-permissions": "^1.0.0",
@@ -32,7 +33,9 @@
             "cordova-plugin-headercolor": {},
             "cordova-sqlite-storage": {},
             "cordova-plugin-sqlite-2": {},
-            "cordova-plugin-android-permissions": {}
+            "cordova-plugin-sqlite-2": {},
+            "cordova-plugin-android-permissions": {},
+            "cordova-sqlite-storage": {}
         },
         "platforms": [
             "android",
