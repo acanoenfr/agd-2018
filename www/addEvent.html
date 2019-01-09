@@ -9,7 +9,8 @@
         <link rel="stylesheet" href="css/jquery-ui.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
-         <script type="text/javascript">
+        <script type="text/javascript">
+            let myDB = window.openDatabase("Events0000000", "1.0", "All Deadlines", 2000000)
             function recupText(){
                 let titre = document.getElementById("ipTitle").value;
                 console.log(titre); 
@@ -20,16 +21,14 @@
                 let desc = document.getElementById("ipDesc").value;
                 console.log(desc);
 				let myDB = window.openDatabase("Events0000000", "1.0", "All Deadlines", 2000000)
-        myDB.transaction(function (txn) {
-            txn.executeSql(`INSERT INTO events(title, content, color, start, end) VALUES(?, ?, ?, ?, ?)`, [ title, desc , '#0000ff', debut, end ], function (tx, res) {
-                console.info('Insert data in events')
-            }, function (tx, err) {
-                console.warn('Err[' + err.code + ']: ' + err.message)
-            }); 
-			
-        })
-        }
-            
+                myDB.transaction(function (txn) {
+                    txn.executeSql(`INSERT INTO events(title, content, color, start, end) VALUES(?, ?, ?, ?, ?)`, [ titre, desc , '#0000ff', debut, end ], function (tx, res) {
+                        console.info('Insert data in events')
+                    }, function (tx, err) {
+                        console.warn('Err[' + err.code + ']: ' + err.message)
+                    }); 
+                })
+            }
         </script>
     </head>
  
@@ -73,7 +72,8 @@
                             <textarea class="form-control" rows="3" id="ipDesc" placeholder="Description"></textarea>
                         </div>
                         <button id="submit" type="button" class="btn-submit" id="buttonSoum" onclick="recupText()">
-                            <span onclick="window.location='addEvent.html';" class="icon">
+                            <!--<span onclick="window.location='addEvent.html';" class="icon">-->
+                            <span class="icon">
                                 <i class="fas fa-plus"></i>
                             </span> 
                         </button>
