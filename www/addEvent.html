@@ -10,21 +10,34 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
         <script type="text/javascript">
+            // Ouverture de la base de données
             let myDB = window.openDatabase("Events0000000", "1.0", "All Deadlines", 2000000)
+
+            // Fonction récupérant le texte entré et l'envoyant à la bdd, exécuté au clic du bouton (+)
             function recupText(){
+                // Récup. du titre
                 let titre = document.getElementById("ipTitle").value;
-                console.log(titre); 
+                //console.log(titre);
+                // Récup. de la date de début 
                 let debut = document.getElementById("ipDebut").value;
-                console.log(debut);
+                debut = debut.replace(/\b0/g, ''); // Exclusion des zéro inutiles (par exemple pour le mois de janvier: 1 au lieu de 01)
+                //console.log(debut);
+                // Idem pour la date de fin
                 let end = document.getElementById("ipEnd").value;
-                console.log(end);
+                end = end.replace(/\b0/g, '');
+                //console.log(end);
+                // Récup. de la description de la deadline
                 let desc = document.getElementById("ipDesc").value;
-                console.log(desc);
-				let myDB = window.openDatabase("Events0000000", "1.0", "All Deadlines", 2000000)
+                //console.log(desc);
+				//let myDB = window.openDatabase("Events0000000", "1.0", "All Deadlines", 2000000)
+                // Transaction SQL
                 myDB.transaction(function (txn) {
+                    // Insère les données entrées dans la table events
                     txn.executeSql(`INSERT INTO events(title, content, color, start, end) VALUES(?, ?, ?, ?, ?)`, [ titre, desc , '#0000ff', debut, end ], function (tx, res) {
+                        // Si ça marche => on indique dans la console dev que ça marche
                         console.info('Insert data in events')
                     }, function (tx, err) {
+                        // Si y'a un pb => message d'erreur dans la console
                         console.warn('Err[' + err.code + ']: ' + err.message)
                     }); 
                 })
@@ -72,7 +85,8 @@
                             <textarea class="form-control" rows="3" id="ipDesc" placeholder="Description"></textarea>
                         </div>
                         <button id="submit" type="button" class="btn-submit" id="buttonSoum" onclick="recupText()">
-                            <span onclick="window.location='addEvent.html';" class="icon">
+                            <!--<span onclick="window.location='addEvent.html';" class="icon">-->
+                            <span class="icon">
                                 <i class="fas fa-plus"></i>
                             </span> 
                         </button>
