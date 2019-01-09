@@ -32,13 +32,10 @@
             "cordova-plugin-statusbar": {},
             "cordova-plugin-headercolor": {},
             "cordova-sqlite-storage": {},
-<<<<<<< HEAD
-            "cordova-plugin-sqlite-2": {}
-=======
+            "cordova-plugin-sqlite-2": {},
             "cordova-plugin-sqlite-2": {},
             "cordova-plugin-android-permissions": {},
-            "cordova-sqlite-storage": {},
->>>>>>> master
+            "cordova-sqlite-storage": {}
         },
         "platforms": [
             "android",
