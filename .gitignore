@@ -23,6 +23,13 @@ plugins/cordova-plugin-whitelist/
 plugins/cordova-plugin-file/
 plugins/cordova-plugin-sqlite-2/
 plugins/cordova-plugin-browsersync/
+plugins/cordova-plugin-android-permissions/
+plugins/cordova-plugin-badge/
+plugins/cordova-plugin-device/
+plugins/cordova-plugin-headercolor/
+plugins/cordova-plugin-local-notification/
+plugins/cordova-plugin-statusbar/
+plugins/cordova-sqlite-storage/
 plugins/android.json
 plugins/browser.json
 plugins/fetch.json
