@@ -31,7 +31,9 @@
             "cordova-plugin-statusbar": {},
             "cordova-plugin-headercolor": {},
             "cordova-sqlite-storage": {},
+            "cordova-plugin-sqlite-2": {}
             "cordova-plugin-android-permissions": {}
+            "cordova-sqlite-storage": {},
         },
         "platforms": [
             "android",
