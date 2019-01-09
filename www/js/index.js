@@ -31,8 +31,8 @@ let app = {
                             if (!events[i].end) {
                                 elementStart.setAttribute('class', 'event')
                                 let icon = document.createElement('i')
-                                icon.setAttribute('class', 'fas fa-circle')
-                                icon.setAttribute('style', `color: ${events[i].color}; font-size: .5rem;`)
+                                icon.setAttribute('class', 'fas fa-star')
+                                icon.setAttribute('style', `color: ${events[i].color}; font-size: 1rem;`)
                                 elementStart.appendChild(icon)
                                 elementStart.addEventListener('click', function(){
                                     window.location = 'modSupDeadline.html'
@@ -42,11 +42,11 @@ let app = {
                                 elementEnd.setAttribute('class', 'event')
                                 let icon1 = document.createElement('i')
                                 icon1.setAttribute('class', 'fas fa-chevron-circle-right')
-                                icon1.setAttribute('style', `color: ${events[i].color}; font-size: .5rem;`)
+                                icon1.setAttribute('style', `color: ${events[i].color}; font-size: 1rem;`)
                                 elementStart.appendChild(icon1)
                                 let icon2 = document.createElement('i')
                                 icon2.setAttribute('class', 'fas fa-chevron-circle-left')
-                                icon2.setAttribute('style', `color: ${events[i].color}; font-size: .5rem;`)
+                                icon2.setAttribute('style', `color: ${events[i].color}; font-size: 1rem;`)
                                 elementEnd.appendChild(icon2)
                                 elementStart.addEventListener('click', function(){
                                     window.location = 'modSupDeadline.html'
