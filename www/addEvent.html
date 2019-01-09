@@ -41,6 +41,11 @@
                         console.warn('Err[' + err.code + ']: ' + err.message)
                     }); 
                 })
+			   	 if(titre ==="")
+				 	{
+						document.getElementById("ipAlertTitle").style.display = block;
+					}
+					document.getElementById("ipAlertTitle").style.display = none;
             }
         </script>
     </head>
