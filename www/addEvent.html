@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="css/style.css">
         <script type="text/javascript">
             // Ouverture de la base de données
-            let myDB = window.openDatabase("Events0000000", "1.0", "All Deadlines", 2000000)
+            let myDB = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
 
             // Fonction récupérant le texte entré et l'envoyant à la bdd, exécuté au clic du bouton (+)
             function recupText(){
@@ -33,7 +33,7 @@
                 // Transaction SQL
                 myDB.transaction(function (txn) {
                     // Insère les données entrées dans la table events
-                    txn.executeSql(`INSERT INTO events(title, content, color, start, end) VALUES(?, ?, ?, ?, ?)`, [ titre, desc , '#0000ff', debut, end ], function (tx, res) {
+                    txn.executeSql(`INSERT INTO events(title, content, start, end) VALUES(?, ?, ?, ?)`, [ titre, desc, debut, end ], function (tx, res) {
                         // Si ça marche => on indique dans la console dev que ça marche
                         console.info('Insert data in events')
                     }, function (tx, err) {
@@ -41,6 +41,11 @@
                         console.warn('Err[' + err.code + ']: ' + err.message)
                     }); 
                 })
+			   	 if(titre ==="")
+				 	{
+						document.getElementById("ipAlertTitle").style.display = block;
+					}
+					document.getElementById("ipAlertTitle").style.display = none;
             }
         </script>
     </head>

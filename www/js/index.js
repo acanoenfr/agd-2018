@@ -9,9 +9,9 @@ let app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
-        let myDB = window.openDatabase("Events0000000", "1.0", "All Deadlines", 2000000)
+        let myDB = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
         myDB.transaction(function (txn) {
-            txn.executeSql("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT, color TEXT NOT NULL, start TEXT NOT NULL, end TEXT)")
+            txn.executeSql("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT, start TEXT NOT NULL, end TEXT)")
             // txn.executeSql(`INSERT INTO events(title, color, start, end) VALUES(?, ?, ?, ?)`, ['Rattrapage TP SQL', '#ff0000', '2019-2-14', '2019-2-28'])
         })
         showCalendar(currentMonth, currentYear)
@@ -41,7 +41,7 @@ let app = {
                                 elementStart.setAttribute('class', 'event')
                                 let icon = document.createElement('i')
                                 icon.setAttribute('class', 'fas fa-star')
-                                icon.setAttribute('style', `color: ${events[i].color}; font-size: 1rem;`)
+                                icon.setAttribute('style', `color: blue; font-size: 1rem;`)
                                 elementStart.appendChild(icon)
 
                                 if (checkListener == 0) {
@@ -72,11 +72,11 @@ let app = {
                                 elementEnd.setAttribute('class', 'event')
                                 let icon1 = document.createElement('i')
                                 icon1.setAttribute('class', 'fas fa-chevron-circle-right')
-                                icon1.setAttribute('style', `color: ${events[i].color}; font-size: 1rem;`)
+                                icon1.setAttribute('style', `color: red; font-size: 1rem;`)
                                 elementStart.appendChild(icon1)
                                 let icon2 = document.createElement('i')
                                 icon2.setAttribute('class', 'fas fa-chevron-circle-left')
-                                icon2.setAttribute('style', `color: ${events[i].color}; font-size: 1rem;`)
+                                icon2.setAttribute('style', `color: red; font-size: 1rem;`)
                                 elementEnd.appendChild(icon2)
                                 elementStart.addEventListener('click', function(){
                                     window.location = 'modSupDeadline.html'
