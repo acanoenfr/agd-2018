@@ -24,24 +24,12 @@ let app = {
                     console.info(res.rows)
                     let events = res.rows
 
-                    let checkListener = 0; // Pour vérifier si il y a déjà un event listener sur la date
                     let dateCheck; // Stocke la date de la case cliquée pour la requête SQL affichant les deadlines du jour
-                    let dateTemp; // Deadline tampon pour vérifier si il y a déjà une deadline sur la date actuelle (Pour l'event listener)
                     var datesCheckArray = []; // Stocker les dates avec déjà une deadline
                     let laDateGet;
 
                     for (let i = 0; i < res.rows.length; i++) {
                         date = events[i].start.split('-')
-
-                        dateTemp = events[i].start; // Mise en tampon de la date en cours
-                      // if(dateTemp == dateCheck) checkListener++; // Incrémente checkListener de 1 si il on est déjà passé sur cette date
-                      
-                      // Incrémente checkListener de 1 si la date est stocké dans l'array
-                        var found = datesCheckArray.find(function (element) {
-                            return element = events[i].start;
-                        });
-                        if (found != undefined) { checkListener++; }
-                        
 
                         if (currentMonth == date[1] - 1 && currentYear == date[0]) {
                             let elementStart = document.getElementById(events[i].start)
@@ -55,15 +43,8 @@ let app = {
                                     elementStart.appendChild(icon)
                                 })
 
-                                checkListener++;
-                                dateCheck = events[i].start;
-                                
-                                // Ajoute la date au array datesCheck;
-                                datesCheckArray.push = events[i].start;
-
                                 elementStart.addEventListener('click', function () {
-
-                                laDateGet = elementStart.id;
+                                    laDateGet = elementStart.id;
                                     window.location.assign("modSupDeadline.html?date=" + laDateGet);
                                 })
                             } else {
