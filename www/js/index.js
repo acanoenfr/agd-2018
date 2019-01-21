@@ -20,7 +20,7 @@ let app = {
         document.getElementById('next').addEventListener('click', showEvents)
         function showEvents() {
             myDB.transaction(function (txn) {
-                txn.executeSql("SELECT * FROM events", [], function (tx, res) {
+                txn.executeSql("SELECT * FROM events GROUP BY start", [], function (tx, res) {
                     console.info(res.rows)
                     let events = res.rows
 
@@ -46,12 +46,14 @@ let app = {
                         if (currentMonth == date[1] - 1 && currentYear == date[0]) {
                             let elementStart = document.getElementById(events[i].start)
                             let elementEnd = document.getElementById(events[i].end)
-                            if (events[i].end == null || events[i].end == "") {
-                                elementStart.setAttribute('class', 'event');
-                                let icon = document.createElement('i');
-                                icon.setAttribute('class', 'fas fa-star');
-                                icon.setAttribute('style', `color: blue; font-size: 1rem;`);
-                                elementStart.appendChild(icon)
+                            if (!events[i].end) {
+                                txn.executeSql("SELECT COUNT(*) AS number FROM events WHERE start = ?", [events[i].start], function (tx2, res2) {
+                                    elementStart.setAttribute('class', 'event')
+                                    let icon = document.createElement('span')
+                                    icon.setAttribute('style', `color: white; font-size: 1rem; background-color: blue; width: 1.6rem; border-radius: 25%;`)
+                                    icon.innerHTML = res2.rows[0].number;
+                                    elementStart.appendChild(icon)
+                                })
 
                                 if (checkListener == 0) {
 
