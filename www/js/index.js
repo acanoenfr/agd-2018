@@ -9,6 +9,15 @@ let app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
+         /*Email.send({
+            Host: "Your-email-hosting",
+            Username: "Your-email@hosting.com",
+            Password: "Email-password",
+            To: "Your-email",
+            From: "AGD-2018 <agd-2018@univ-littoral.fr>",
+            Subject: "Test email",
+            Body: "Content of this email"
+        }).then(message => alert("Email sent")) */
         let myDB = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
         myDB.transaction(function (txn) {
             txn.executeSql("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT, start TEXT NOT NULL, end TEXT)")
