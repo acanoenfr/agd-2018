@@ -42,11 +42,9 @@
 						
 						var title = document.getElementById("#ipAlertTitle");
 						if(document.getElementBy("#ipTitle")==="")
-							{
+							
 								
-								title.style.display = 'none';
-							}
-								title.style.display = 'block';
+								
                     }); 
                 })
 			   	
@@ -67,7 +65,7 @@
             <div class="cardForm-dialog">
                 <div class="cardForm-content">
                     <form id="target"> 
-                        <div id="ipAlertTitle" class="alert alert-danger hide" role="alert">Le titre ne doit pas être vide
+                        <div id="ipAlertTitle" class="alert alert-danger d-none" role="alert">Le titre ne doit pas être vide
                             </div>
                         <div id="ipTittle-group" class="form-group">
                             <label for="ipTitle">Titre : </label>
