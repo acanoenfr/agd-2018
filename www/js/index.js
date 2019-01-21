@@ -24,33 +24,46 @@ let app = {
                     console.info(res.rows)
                     let events = res.rows
 
-                    let checkListener; // Pour vérifier si il y a déjà un event listener sur la date
+                    let checkListener = 0; // Pour vérifier si il y a déjà un event listener sur la date
                     let dateCheck; // Stocke la date de la case cliquée pour la requête SQL affichant les deadlines du jour
                     let dateTemp; // Deadline tampon pour vérifier si il y a déjà une deadline sur la date actuelle (Pour l'event listener)
+                    var datesCheckArray = []; // Stocker les dates avec déjà une deadline
 
                     for (let i = 0; i < res.rows.length; i++) {
                         date = events[i].start.split('-')
 
                         dateTemp = events[i].start; // Mise en tampon de la date en cours
-                        if(dateTemp != dateCheck) checkListener++; // Incrémente checkListener de 1 si il on est déjà passé sur cette date
+                      // if(dateTemp == dateCheck) checkListener++; // Incrémente checkListener de 1 si il on est déjà passé sur cette date
+                      
+                      // Incrémente checkListener de 1 si la date est stocké dans l'array
+                        var found = datesCheckArray.find(function (element) {
+                            return element = events[i].start;
+                        });
+                        if (found != undefined) { checkListener++; }
+                        
 
                         if (currentMonth == date[1] - 1 && currentYear == date[0]) {
                             let elementStart = document.getElementById(events[i].start)
                             let elementEnd = document.getElementById(events[i].end)
-                            if (!events[i].end) {
-                                elementStart.setAttribute('class', 'event')
-                                let icon = document.createElement('i')
-                                icon.setAttribute('class', 'fas fa-star')
-                                icon.setAttribute('style', `color: blue; font-size: 1rem;`)
+                            if (events[i].end == null || events[i].end == "") {
+                                elementStart.setAttribute('class', 'event');
+                                let icon = document.createElement('i');
+                                icon.setAttribute('class', 'fas fa-star');
+                                icon.setAttribute('style', `color: blue; font-size: 1rem;`);
                                 elementStart.appendChild(icon)
 
                                 if (checkListener == 0) {
+
                                     checkListener++;
+                                    dateCheck = events[i].start;
+                                
+                                    // Ajoute la date au array datesCheck;
+                                    datesCheckArray.push = events[i].start;
 
-                                    elementStart.addEventListener('click', function(){
-
+                                    elementStart.addEventListener('click', function () {
                                         /* Tout ça sert à afficher les deadlines dans la console */
-                                        dateCheck = events[i].start;
+
+                                        
                                         myDB.transaction(function (txn2) {
                                             txn2.executeSql("SELECT * FROM events WHERE start=?", [dateCheck], function (tx2, res2) {
                                                 for (let k = 0; k < res2.rows.length; k++) {
@@ -78,10 +91,10 @@ let app = {
                                 icon2.setAttribute('class', 'fas fa-chevron-circle-left')
                                 icon2.setAttribute('style', `color: red; font-size: 1rem;`)
                                 elementEnd.appendChild(icon2)
-                                elementStart.addEventListener('click', function(){
+                                elementStart.addEventListener('click', function () {
                                     window.location = 'modSupDeadline.html'
                                 })
-                                elementEnd.addEventListener('click', function(){
+                                elementEnd.addEventListener('click', function () {
                                     window.location = 'modSupDeadline.html'
                                 })
                             }
