@@ -18,6 +18,8 @@
                    // return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));                
                     let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
                         db.transaction(function (tz) {
+                        tz.executeSql("select * from events", [], function (tz, resultado) {
+                        console.log(resultado)});
                         tz.executeSql("select * from events where start=?", [date], function (tz, resul) {
                            $("#ipTitle").val(resul.rows[0].title);
                            $("#ipStart").val(resul.rows[0].start);
@@ -55,9 +57,10 @@
             function supprimerDeadline() {
                 var c = confirm("Êtes-vous sûr de supprimer le Deadline? ");
                 if (c) {
+                    var ipId= $("#ipId").val();
                     let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
                     db.transaction(function (tx) {
-                        tx.executeSql('delete from events where id=?', [4], function (tx) {
+                        tx.executeSql('delete from events where id=?', [ipId], function (tx) {
                             console.log('deadline supprimé');
                         });
                     },
@@ -65,12 +68,13 @@
                             console.log('Transaction ERROR: ' + error.message);
                         },
                         function () {
-                            console.log('works');
+                           // console.log('works');
                         });
                 }
             }
             function modifierDeadline() {
                 let ipId = $("#ipId").val();
+                console.log(ipId);
                 let ipTitle = $("#ipTitle").val();
                 let ipStart = $("#ipStart").val();
                 let ipEnd = $("#ipEnd").val();
@@ -92,7 +96,7 @@
                                 console.log(error);
                             },
                             function () {
-                                alert('OK');
+                               
                             });
 
                         db.transaction(function (trans) {
