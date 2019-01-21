@@ -55,20 +55,17 @@ let app = {
                                     elementStart.appendChild(icon)
                                 })
 
-                                if (checkListener == 0) {
-
-                                    checkListener++;
-                                    dateCheck = events[i].start;
+                                checkListener++;
+                                dateCheck = events[i].start;
                                 
-                                    // Ajoute la date au array datesCheck;
-                                    datesCheckArray.push = events[i].start;
+                                // Ajoute la date au array datesCheck;
+                                datesCheckArray.push = events[i].start;
 
-                                    elementStart.addEventListener('click', function () {
+                                elementStart.addEventListener('click', function () {
 
-                                        laDateGet = res.rows[0].start;
-                                        window.location.assign("modSupDeadline.html?date=" + laDateGet);
-                                    })
-                                }
+                                laDateGet = elementStart.id;
+                                    window.location.assign("modSupDeadline.html?date=" + laDateGet);
+                                })
                             } else {
                                 elementStart.setAttribute('class', 'event')
                                 elementEnd.setAttribute('class', 'event')
@@ -81,10 +78,12 @@ let app = {
                                 icon2.setAttribute('style', `color: red; font-size: 1rem;`)
                                 elementEnd.appendChild(icon2)
                                 elementStart.addEventListener('click', function () {
-                                    window.location = 'modSupDeadline.html'
+                                    laDateGet = elementStart.id;
+                                    window.location.assign("modSupDeadline.html?date=" + laDateGet);
                                 })
                                 elementEnd.addEventListener('click', function () {
-                                    window.location = 'modSupDeadline.html'
+                                    laDateGet = elementStart.id;
+                                    window.location.assign("modSupDeadline.html?date=" + laDateGet);
                                 })
                             }
                         }
