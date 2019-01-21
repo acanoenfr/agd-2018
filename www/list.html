@@ -7,18 +7,12 @@
         <link rel="stylesheet" href="css/all.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <script src="js/date_get.js"></script>
         <script>
+            console.log(date);
         	let myDB = window.openDatabase("Events0000000", "1.0", "All Deadlines", 2000000);
         	myDB.transaction(function (txn) {
-                txn.executeSql("SELECT * FROM events", [], function (tx, res) {
-                    /*console.info(res.rows);
-                    let endroit = document.getElementById("element");
-                    endroit.setAttribute('value', res.rows[0].id);
-                    endroit.append(res.rows[0].id + ": ";
-                    endroit.append(res.rows[0].title + ", ");
-                    endroit.append(res.rows[0].content + ", ");
-                    endroit.append(res.rows[0].start + ", ");
-                    endroit.append(res.rows[0].end);*/
+                txn.executeSql("SELECT * FROM events WHERE start = ?", [date], function (tx, res) {
                     let list = document.getElementById("list");
                     for (let i = 0; i < res.rows.length; i++) {
                     	let button = document.createElement("button");

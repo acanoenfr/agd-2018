@@ -36,16 +36,20 @@ let app = {
                             let elementEnd = document.getElementById(events[i].end)
                             if (!events[i].end) {
                                 txn.executeSql("SELECT COUNT(*) AS number FROM events WHERE start = ?", [events[i].start], function (tx2, res2) {
-                                    elementStart.setAttribute('class', 'event')
-                                    let icon = document.createElement('span')
-                                    icon.setAttribute('style', `color: white; font-size: 1rem; background-color: blue; width: 1.6rem; border-radius: 25%;`)
+                                    elementStart.setAttribute('class', 'event');
+                                    let icon = document.createElement('span');
+                                    icon.setAttribute('style', `color: white; font-size: 1rem; background-color: blue; width: 1.6rem; border-radius: 25%;`);
                                     icon.innerHTML = res2.rows[0].number;
-                                    elementStart.appendChild(icon)
+                                    elementStart.appendChild(icon);
                                 })
 
                                 elementStart.addEventListener('click', function () {
                                     laDateGet = elementStart.id;
-                                    window.location.assign("modSupDeadline.html?date=" + laDateGet);
+                                    //if (nbRows == 1) {
+                                        window.location.assign("modSupDeadline.html?date=" + laDateGet);
+                                    /*} else {
+                                        window.location.assign("list.html?date=" + laDateGet);
+                                    }*/
                                 })
                             } else {
                                 elementStart.setAttribute('class', 'event')
