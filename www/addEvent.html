@@ -112,18 +112,17 @@
         
         <script>
             var inputList = document.forms['ipTitle'].elements;
-	var alertTxt = "";
-	for (unInput in inputList)
-	{
-		var x = document.forms['ipTitle'].elements[unInput];
- 
-		if(x.value==0 || x.value=='')
-		{
-			alertTxt += "Le champ " + x.name + " n'a pas été rempli \n";
-		}
-	}
-	alert(alertTxt)
-        
+        	var alertTxt = "";
+        	for (unInput in inputList)
+        	{
+        		var x = document.forms['ipTitle'].elements[unInput];
+         
+        		if(x.value==0 || x.value=='')
+        		{
+        			alertTxt += "Le champ " + x.name + " n'a pas été rempli \n";
+        		}
+        	}
+        	alert(alertTxt
         </script>
        
     </body>
