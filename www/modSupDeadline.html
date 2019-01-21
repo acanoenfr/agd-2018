@@ -23,6 +23,8 @@
                            $("#ipStart").val(resul.rows[0].start);
                            $("#ipEnd").val(resul.rows[0].end);
                            $("#ipDesc").val(resul.rows[0].content);
+                           $("#ipId").val(resul.rows[0].id);
+
                        });
                    },
                        function (error) {
@@ -68,7 +70,7 @@
                 }
             }
             function modifierDeadline() {
-
+                let ipId = $("#ipId").val();
                 let ipTitle = $("#ipTitle").val();
                 let ipStart = $("#ipStart").val();
                 let ipEnd = $("#ipEnd").val();
@@ -82,7 +84,7 @@
 
                         let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
                         db.transaction(function (tw) {
-                            tw.executeSql('update events set title=?, content=?, start=?, end=? where id=?', [ipTitle, ipContent, ipStart, ipEnd, 4], function (tw, r) {
+                            tw.executeSql('update events set title=?, content=?, start=?, end=? where id=?', [ipTitle, ipContent, ipStart, ipEnd, ipId], function (tw, r) {
                                 console.log(r.rowsAffected);
                             });
                         },
@@ -134,6 +136,7 @@
 
                 <div id="ipTitle-group" class="form-group">
                     <label for="ipTitle">Title : </label>
+                    <input type="hidden" class="form-control" id="ipId" value="">
                     <input type="text" class="form-control" id="ipTitle" placeholder="Title" value="">
                 </div>
 
