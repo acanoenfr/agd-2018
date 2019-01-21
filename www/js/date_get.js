@@ -12,4 +12,3 @@ function findGetParameter(parameterName) {
 }
 
 var date = findGetParameter("date");
-console.log(date);
