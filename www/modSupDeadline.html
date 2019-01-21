@@ -5,88 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calendrier | JavaScript</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script>
+    
+                function remplirChampsaModifier(dateGet) {
+                    dateGet = dateGet.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                    var regex = new RegExp("[\\?&]" + dateGet + "=([^&#]*)"),
+                        results = regex.exec(location.search);
+                        let date = results[1];
+                   // return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));                
+                    let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
+                        db.transaction(function (tz) {
+                        tz.executeSql("select * from events where start=?", [date], function (tz, resul) {
+                           $("#ipTitle").val(resul.rows[0].title);
+                           $("#ipStart").val(resul.rows[0].start);
+                           $("#ipEnd").val(resul.rows[0].end);
+                           $("#ipDesc").val(resul.rows[0].content);
+                       });
+                   },
+                       function (error) {
+                           console.log(error);
+                       },
+                       function () {           
+                       });
+                } 
 
-     /*   function prueba2(id) {        This function delete all deadlines
+      //  }
+            /*   function deleteALl(id) {        This function delete all deadlines
+       
+                   let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
+                   db.transaction(function (tw) {
+                       tw.executeSql('delete from events', [], function (tw, r) {
+                           console.log(r.rowsAffected);
+                       });
+                   },
+                       function (error) {
+                           console.log(error);
+                       },
+                       function () {
+                           alert('DeadLine Modifié');
+                       });
+       
+               }  */
 
-            let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
-            db.transaction(function (tw) {
-                tw.executeSql('delete from events', [], function (tw, r) {
-                    console.log(r.rowsAffected);
-                });
-            },
-                function (error) {
-                    console.log(error);
-                },
-                function () {
-                    alert('DeadLine Modifié');
-                });
-
-        }  */        
-
-        function supprimerDeadline() {
-           var c= confirm("Êtes-vous sûr de supprimer le Deadline? ");
-           if(c){
-            let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
-            db.transaction(function (tx) {
-                tx.executeSql('delete from events where id=?', [4], function (tx) {
-                    console.log('deadline supprimé');
-                });
-            },
-                function (error) {
-                    console.log('Transaction ERROR: ' + error.message);
-                },
-                function () {
-                    console.log('works');
-                });
-        }
-    } 
-        function modifierDeadline() {
-
-            let ipTitle = $("#ipTitle").val();
-            let ipStart = $("#ipStart").val();
-            let ipEnd = $("#ipEnd").val();
-            let ipContent = $("#ipDesc").val();
-            if(ipTitle=="" || ipStart=="" || ipTitle==null || ipStart==null){
-                $("#ipAlertTitle").removeClass("hide");
+            function supprimerDeadline() {
+                var c = confirm("Êtes-vous sûr de supprimer le Deadline? ");
+                if (c) {
+                    let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
+                    db.transaction(function (tx) {
+                        tx.executeSql('delete from events where id=?', [4], function (tx) {
+                            console.log('deadline supprimé');
+                        });
+                    },
+                        function (error) {
+                            console.log('Transaction ERROR: ' + error.message);
+                        },
+                        function () {
+                            console.log('works');
+                        });
+                }
             }
-            else{
-            var c= confirm("Êtes-vous sûr de modifier le Deadline? ");
-           if(c){
-           
-            let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
-            db.transaction(function (tw) {
-                tw.executeSql('update events set title=?, content=?, start=?, end=? where id=?', [ipTitle, ipContent, ipStart, ipEnd, 4], function (tw, r) {
-                    console.log(r.rowsAffected);
-                });
-            },
-                function (error) {
-                    console.log(error);
-                },
-                function () {
-                    alert('OK');
-                });
+            function modifierDeadline() {
 
-            db.transaction(function (trans) {
-                trans.executeSql('Select * from events', [], function (trans, resu) {
-                    console.log(resu.rows);
-                });
-            },
-                function (error) {
-                    console.log(error);
-                },
-                function () {
-                    alert("OK 2");
-                });
-        }
-    }
-    }
+                let ipTitle = $("#ipTitle").val();
+                let ipStart = $("#ipStart").val();
+                let ipEnd = $("#ipEnd").val();
+                let ipContent = $("#ipDesc").val();
+                if (ipTitle == "" || ipStart == "" || ipTitle == null || ipStart == null) {
+                    $("#ipAlertTitle").removeClass("hide");
+                }
+                else {
+                    var c = confirm("Êtes-vous sûr de modifier le Deadline? ");
+                    if (c) {
+
+                        let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
+                        db.transaction(function (tw) {
+                            tw.executeSql('update events set title=?, content=?, start=?, end=? where id=?', [ipTitle, ipContent, ipStart, ipEnd, 4], function (tw, r) {
+                                console.log(r.rowsAffected);
+                            });
+                        },
+                            function (error) {
+                                console.log(error);
+                            },
+                            function () {
+                                alert('OK');
+                            });
+
+                        db.transaction(function (trans) {
+                            trans.executeSql('Select * from events', [], function (trans, resu) {
+                                console.log(resu.rows);
+                            });
+                        },
+                            function (error) {
+                                console.log(error);
+                            },
+                            function () {
+                                alert("OK 2");
+                            });
+                    }
+                }
+            }
     </script>
 
 </head>
+<header class="navbar navbar-dark bg-primary">
+    <span class="navbar-brand mb-0 h1">Modifier ou supprimer</span>
+    <span onclick="window.location='home.html';" class="icon">
+        <i class="fas fa-arrow-left"></i>
+    </span> 
+</header>
+<body onload="remplirChampsaModifier('date')">
 <div class="modal-dialog">
     <div class="modal-content">
 
@@ -139,8 +169,7 @@
                     <button id="supprimer" type="button" class="btn btn-default form-btn" onclick="supprimerDeadline()">Supprimer</button>
                 </div>
                 <div>
-                    <button id="premodifier" type="button" class="btn btn-default form-btn" data-dismiss="modal"
-                        onclick="">Fermer</button>
+                    <button id="premodifier" type="button" class="btn btn-default form-btn" data-dismiss="modal" onclick="getParameterByName('date')">Fermer</button>
                     <button id="modifier" type="button" class="btn btn-default form-btn" onclick="modifierDeadline()">Submit</button>
                 </div>
             </div>
@@ -149,9 +178,9 @@
 
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
 <script src="js/events.js"></script>
 <script src="js/date_get.js"></script>
