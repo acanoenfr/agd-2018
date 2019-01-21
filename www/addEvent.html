@@ -16,7 +16,7 @@
             // Fonction récupérant le texte entré et l'envoyant à la bdd, exécuté au clic du bouton (+)
             function recupText(){
                 // Récup. du titre
-                let titre = document.getElementById("ipTitle").value;
+                const titre = document.getElementById("ipTitle").value;
                 //console.log(titre);
                 // Récup. de la date de début 
                 let debut = document.getElementById("ipDebut").value;
@@ -29,7 +29,7 @@
                 // Récup. de la description de la deadline
                 let desc = document.getElementById("ipDesc").value;
                 //console.log(desc);
-				//let myDB = window.openDatabase("Events0000000", "1.0", "All Deadlines", 2000000)
+				
                 // Transaction SQL
                 myDB.transaction(function (txn) {
                     // Insère les données entrées dans la table events
@@ -39,13 +39,17 @@
                     }, function (tx, err) {
                         // Si y'a un pb => message d'erreur dans la console
                         console.warn('Err[' + err.code + ']: ' + err.message)
+						
+						var title = document.getElementById("#ipAlertTitle");
+						if(document.getElementBy("#ipTitle")==="")
+							{
+								
+								title.style.display = 'none';
+							}
+								title.style.display = 'block';
                     }); 
                 })
-			   	 if(titre ==="")
-				 	{
-						document.getElementById("ipAlertTitle").style.display = block;
-					}
-					document.getElementById("ipAlertTitle").style.display = none;
+			   	
             }
         </script>
     </head>
@@ -63,11 +67,15 @@
             <div class="cardForm-dialog">
                 <div class="cardForm-content">
                     <form id="target"> 
+<<<<<<< Updated upstream
                             <div id="ipAlertTitle" class="alert alert-danger" role="alert">Le titre ne doit pas être vide
                                 </div>
                             <div id="ipTittle-group" class="form-group">
                                 <label for="ipTitle">Titre : </label>
                                 <input type="text" class="form-control" id="ipTitle" placeholder="Titre">
+=======
+                        <div id="ipAlertTitle" class="alert alert-danger hide" role="alert">Le titre ne doit pas être vide
+>>>>>>> Stashed changes
                             </div>
 <<<<<<< Updated upstream
                         <div id="ipTittle-group" class="form-group">
