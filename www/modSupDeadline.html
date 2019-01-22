@@ -10,29 +10,42 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script>
-
         function remplirChampsaModifier(dateGet) {
             dateGet = dateGet.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
             var regex = new RegExp("[\\?&]" + dateGet + "=([^&#]*)"),
                 results = regex.exec(location.search);
             let date = results[1];
-            // return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));                
+            // return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
             let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
             db.transaction(function (tz) {
                 tz.executeSql("select * from events", [], function (tz, resultado) {
                     console.log(resultado)
                 });
-                tz.executeSql("select * from events where start=?", [date], function (tz, resul) {
-                    var dateStart = formatDate(resul.rows[0].start);
-                    console.log(dateStart);
-                    var dateEnd = formatDate(resul.rows[0].end);
-                    console.log(dateEnd);
-                    $("#ipStart").val(dateStart);
-                    $("#ipEnd").val(dateEnd);
-                    $("#ipTitle").val(resul.rows[0].title);
-                    $("#ipDesc").val(resul.rows[0].content);
-                    $("#ipId").val(resul.rows[0].id);
-                });
+                if (id) {
+                    tz.executeSql("select * from events where start=? and id=?", [date, id], function (tz, resul) {
+                        var dateStart = formatDate(resul.rows[0].start);
+                        console.log(dateStart);
+                        var dateEnd = formatDate(resul.rows[0].end);
+                        console.log(dateEnd);
+                        $("#ipStart").val(dateStart);
+                        $("#ipEnd").val(dateEnd);
+                        $("#ipTitle").val(resul.rows[0].title);
+                        $("#ipDesc").val(resul.rows[0].content);
+                        $("#ipId").val(resul.rows[0].id);
+                    });
+                } else {
+                    tz.executeSql("select * from events where start=?", [date], function (tz, resul) {
+                        var dateStart = formatDate(resul.rows[0].start);
+                        console.log(dateStart);
+                        var dateEnd = formatDate(resul.rows[0].end);
+                        console.log(dateEnd);
+                        $("#ipStart").val(dateStart);
+                        $("#ipEnd").val(dateEnd);
+                        $("#ipTitle").val(resul.rows[0].title);
+                        $("#ipDesc").val(resul.rows[0].content);
+                        $("#ipId").val(resul.rows[0].id);
+                    });
+                }
             },
                 function (error) {
                     console.log(error);

@@ -12,3 +12,4 @@ function findGetParameter(parameterName) {
 }
 
 var date = findGetParameter("date");
+var id = findGetParameter("id");
