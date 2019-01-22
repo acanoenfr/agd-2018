@@ -23,7 +23,6 @@
                     console.log(resultado)
                 });
                 tz.executeSql("select * from events where start=?", [date], function (tz, resul) {
-
                     var dateStart = formatDate(resul.rows[0].start);
                     console.log(dateStart);
                     var dateEnd = formatDate(resul.rows[0].end);
@@ -48,20 +47,16 @@
             if (date.length == 9) {
                 if ((date.lastIndexOf("-")) - (date.indexOf("-")) < 3) {
                     dateN = date.substr(0, 5).concat("0", date.substr(5, 8));
-                    console.log(dateN);
-                }
+               }
                 else {
                     dateN = date.substr(0, 8).concat("0", date.substr(8, 8));
-                    console.log(dateN);
-                }
+                    }
             }
             if (date.length == 8) {
                 var an = date.substr(0, 5);
                 var mois = "0".concat(date.substr(5, 2));
                 var jour = "0".concat(date.substr(7, 8));
                 dateN = an.concat(mois, jour);
-                console.log(dateN);
-
             }
             if(date.length==10){
                 dateN=date;
@@ -84,7 +79,6 @@
                            alert('DeadLine Modifié');
                        });    
                }  */
-
             function supprimerDeadline() {
                 var c = confirm("Êtes-vous sûr de supprimer le Deadline? ");
                 if (c) {
@@ -99,7 +93,6 @@
                             console.log('Transaction ERROR: ' + error.message);
                         },
                         function () {
-                            // console.log('works');
                         });
                 }
             }
@@ -128,7 +121,6 @@
                                 console.log(error);
                             },
                             function () {
-
                             });
                         db.transaction(function (trans) {
                             trans.executeSql('Select * from events', [], function (trans, resu) {
@@ -158,13 +150,10 @@
         <div class="modal-content">
 
             <form>
-
                 <div class="modal-header">
                     Modifier Deadline
                 </div>
-
                 <div class="modal-body">
-
                     <div id="ipAlertTitle" class="alert alert-danger hide" role="alert">
                         Title and Start should not be Empty
                     </div>
@@ -190,7 +179,6 @@
                         <textarea class="form-control" rows="3" id="ipDesc" placeholder="Description"></textarea>
                     </div>
                 </div>
-
                 <div class="modal-footer flex-container">
                     <div>
                         <button id="supprimer" type="button" class="btn btn-default form-btn" onclick="supprimerDeadline()">Supprimer</button>
@@ -201,9 +189,7 @@
                         <button id="modifier" type="button" class="btn btn-default form-btn" onclick="modifierDeadline()">Submit</button>
                     </div>
                 </div>
-
             </form>
-
         </div>
     </div>
     <script src="js/jquery.min.js"></script>
