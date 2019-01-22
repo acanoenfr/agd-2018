@@ -7,12 +7,27 @@
         <link rel="stylesheet" href="css/all.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/script.js"></script>
+        <script src="js/events.js"></script>
         <script src="js/date_get.js"></script>
         <script>
+            function formatDate (input) {
+                var datePart = input.match(/\d+/g),
+                year = datePart[0],
+                month = datePart[1], day = datePart[2];
+                return day+'/'+month+'/'+year;
+            }
+
+            formatDate ('2010/01/18');
+
             console.log(date);
         	let myDB = window.openDatabase("Events0000000", "1.0", "All Deadlines", 2000000);
         	myDB.transaction(function (txn) {
                 txn.executeSql("SELECT * FROM events WHERE start = ?", [date], function (tx, res) {
+                    console.log(res);
                     let list = document.getElementById("list");
                     for (let i = 0; i < res.rows.length; i++) {
                     	let button = document.createElement("button");
@@ -33,7 +48,19 @@
         </script>
     </head>
     <body>
-    	<div id="list">
-    	</div>
+        <header class="navbar navbar-dark bg-primary">
+            <span class="navbar-brand mb-0 h1">Liste</span>
+            <span onclick="window.location='home.html';" class="icon">
+                <i class="fas fa-arrow-left"></i>
+            </span> 
+        </header>
+        <div id="form-event" class="card-fade">
+            <br>
+            <br>
+            <br>
+            <h3>Il y a plusieurs deadlines pour ce jour:</h3>
+        	<div id="list">
+        	</div>
+        </div>
     </body>
 </html>

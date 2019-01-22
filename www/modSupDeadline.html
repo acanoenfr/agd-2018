@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,34 +10,60 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script>
-    
-                function remplirChampsaModifier(dateGet) {
-                    dateGet = dateGet.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-                    var regex = new RegExp("[\\?&]" + dateGet + "=([^&#]*)"),
-                        results = regex.exec(location.search);
-                        let date = results[1];
-                   // return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));                
-                    let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
-                        db.transaction(function (tz) {
-                        tz.executeSql("select * from events", [], function (tz, resultado) {
-                        console.log(resultado)});
-                        tz.executeSql("select * from events where start=?", [date], function (tz, resul) {
-                           $("#ipTitle").val(resul.rows[0].title);
-                           $("#ipStart").val(resul.rows[0].start);
-                           $("#ipEnd").val(resul.rows[0].end);
-                           $("#ipDesc").val(resul.rows[0].content);
-                           $("#ipId").val(resul.rows[0].id);
 
-                       });
-                   },
-                       function (error) {
-                           console.log(error);
-                       },
-                       function () {           
-                       });
-                } 
+        function remplirChampsaModifier(dateGet) {
+            dateGet = dateGet.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + dateGet + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            let date = results[1];
+            // return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));                
+            let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
+            db.transaction(function (tz) {
+                tz.executeSql("select * from events", [], function (tz, resultado) {
+                    console.log(resultado)
+                });
+                tz.executeSql("select * from events where start=?", [date], function (tz, resul) {
+                    var dateStart = formatDate(resul.rows[0].start);
+                    console.log(dateStart);
+                    var dateEnd = formatDate(resul.rows[0].end);
+                    console.log(dateEnd);
+                    $("#ipStart").val(dateStart);
+                    $("#ipEnd").val(dateEnd);
+                    $("#ipTitle").val(resul.rows[0].title);
+                    $("#ipDesc").val(resul.rows[0].content);
+                    $("#ipId").val(resul.rows[0].id);
+                });
+            },
+                function (error) {
+                    console.log(error);
+                },
+                function () {
+                });
+        }
 
-      //  }
+        function formatDate(date) {
+            var dateN;
+            console.log(date.length);
+            if (date.length == 9) {
+                if ((date.lastIndexOf("-")) - (date.indexOf("-")) < 3) {
+                    dateN = date.substr(0, 5).concat("0", date.substr(5, 8));
+               }
+                else {
+                    dateN = date.substr(0, 8).concat("0", date.substr(8, 8));
+                    }
+            }
+            if (date.length == 8) {
+                var an = date.substr(0, 5);
+                var mois = "0".concat(date.substr(5, 2));
+                var jour = "0".concat(date.substr(7, 8));
+                dateN = an.concat(mois, jour);
+            }
+            if(date.length==10){
+                dateN=date;
+            }
+            return dateN;
+        }
+            //  }
             /*   function deleteALl(id) {        This function delete all deadlines
        
                    let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
@@ -44,20 +71,18 @@
                        tw.executeSql('delete from events', [], function (tw, r) {
                            console.log(r.rowsAffected);
                        });
-                   },
+                        },
                        function (error) {
                            console.log(error);
                        },
                        function () {
                            alert('DeadLine Modifié');
-                       });
-       
+                       });    
                }  */
-
             function supprimerDeadline() {
                 var c = confirm("Êtes-vous sûr de supprimer le Deadline? ");
                 if (c) {
-                    var ipId= $("#ipId").val();
+                    var ipId = $("#ipId").val();
                     let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
                     db.transaction(function (tx) {
                         tx.executeSql('delete from events where id=?', [ipId], function (tx) {
@@ -68,7 +93,6 @@
                             console.log('Transaction ERROR: ' + error.message);
                         },
                         function () {
-                           // console.log('works');
                         });
                 }
             }
@@ -76,8 +100,10 @@
                 let ipId = $("#ipId").val();
                 console.log(ipId);
                 let ipTitle = $("#ipTitle").val();
-                let ipStart = $("#ipStart").val();
-                let ipEnd = $("#ipEnd").val();
+                let dateStart = $("#ipStart").val();
+                let ipStart = dateStart.replace(/\b0/g, '');             
+                let dateEnd = $("#ipEnd").val();
+                let ipEnd = dateEnd.replace(/\b0/g, '');
                 let ipContent = $("#ipDesc").val();
                 if (ipTitle == "" || ipStart == "" || ipTitle == null || ipStart == null) {
                     $("#ipAlertTitle").removeClass("hide");
@@ -85,7 +111,6 @@
                 else {
                     var c = confirm("Êtes-vous sûr de modifier le Deadline? ");
                     if (c) {
-
                         let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
                         db.transaction(function (tw) {
                             tw.executeSql('update events set title=?, content=?, start=?, end=? where id=?', [ipTitle, ipContent, ipStart, ipEnd, ipId], function (tw, r) {
@@ -96,9 +121,7 @@
                                 console.log(error);
                             },
                             function () {
-                               
                             });
-
                         db.transaction(function (trans) {
                             trans.executeSql('Select * from events', [], function (trans, resu) {
                                 console.log(resu.rows);
@@ -108,7 +131,6 @@
                                 console.log(error);
                             },
                             function () {
-                                alert("OK 2");
                             });
                     }
                 }
@@ -120,77 +142,63 @@
     <span class="navbar-brand mb-0 h1">Modifier ou supprimer</span>
     <span onclick="window.location='home.html';" class="icon">
         <i class="fas fa-arrow-left"></i>
-    </span> 
+    </span>
 </header>
+
 <body onload="remplirChampsaModifier('date')">
-<div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
-        <form>
-
-            <div class="modal-header">
-                Modifier Deadline
-            </div>
-
-            <div class="modal-body">
-
-                <div id="ipAlertTitle" class="alert alert-danger hide" role="alert">
-                    Title and Start should not be Empty
+            <form>
+                <div class="modal-header">
+                    Modifier Deadline
                 </div>
-
-                <div id="ipTitle-group" class="form-group">
-                    <label for="ipTitle">Title : </label>
-                    <input type="hidden" class="form-control" id="ipId" value="">
-                    <input type="text" class="form-control" id="ipTitle" placeholder="Title" value="">
+                <div class="modal-body">
+                    <div id="ipAlertTitle" class="alert alert-danger hide" role="alert">
+                        Title and Start should not be Empty
+                    </div>
+                    <div id="ipTitle-group" class="form-group">
+                        <label for="ipTitle">Title : </label>
+                        <input type="hidden" class="form-control" id="ipId" value="">
+                        <input type="text" class="form-control" id="ipTitle" placeholder="Title" value="">
+                    </div>
+                    <div id="ipAlertStartEnd" class="alert alert-danger" role="alert">
+                        Start DateTime should be earlier than End DateTime
+                    </div>
+                    <div id="ipStart-group" class="form-group">
+                        <label for="ipStart">Start Date : </label>
+                        <input type="date" class="form-control" id="ipStart" data-field="date" placeholder="Start"
+                            value="">
+                    </div>
+                    <div id="ipEnd-group" class="form-group">
+                        <label for="ipStart">End Date : </label>
+                        <input type="date" class="form-control" id="ipEnd" data-field="date" placeholder="End" value="">
+                    </div>
+                    <div id="ipDesc-group" class="form-group">
+                        <label for="ipDesc">Description : </label>
+                        <textarea class="form-control" rows="3" id="ipDesc" placeholder="Description"></textarea>
+                    </div>
                 </div>
-
-                <div id="ipAllDay-group" class="checkbox">
-                    <label>
-                        <input id="ipAllDay" type="checkbox" checked> All Day
-                    </label>
+                <div class="modal-footer flex-container">
+                    <div>
+                        <button id="supprimer" type="button" class="btn btn-default form-btn" onclick="supprimerDeadline()">Supprimer</button>
+                    </div>
+                    <div>
+                        <button id="premodifier" type="button" class="btn btn-default form-btn" data-dismiss="modal"
+                            onclick="getParameterByName('date')">Fermer</button>
+                        <button id="modifier" type="button" class="btn btn-default form-btn" onclick="modifierDeadline()">Submit</button>
+                    </div>
                 </div>
-
-                <div id="ipAlertStartEnd" class="alert alert-danger" role="alert">
-                    Start DateTime should be earlier than End DateTime
-                </div>
-
-                <div id="ipStart-group" class="form-group">
-                    <label for="ipStart">Start Date : </label>
-                    <input type="text" class="form-control" id="ipStart" data-field="date" placeholder="Start" value="">
-                </div>
-
-                <div id="ipEnd-group" class="form-group">
-                    <label for="ipStart">End Date : </label>
-                    <input type="text" class="form-control" id="ipEnd" data-field="date" placeholder="End" value="">
-                </div>
-
-                <div id="ipDesc-group" class="form-group">
-                    <label for="ipDesc">Description : </label>
-                    <textarea class="form-control" rows="3" id="ipDesc" placeholder="Description"></textarea>
-                </div>
-
-            </div>
-
-            <div class="modal-footer flex-container">
-                <div>
-                    <button id="supprimer" type="button" class="btn btn-default form-btn" onclick="supprimerDeadline()">Supprimer</button>
-                </div>
-                <div>
-                    <button id="premodifier" type="button" class="btn btn-default form-btn" data-dismiss="modal" onclick="getParameterByName('date')">Fermer</button>
-                    <button id="modifier" type="button" class="btn btn-default form-btn" onclick="modifierDeadline()">Submit</button>
-                </div>
-            </div>
-
-        </form>
-
+            </form>
+        </div>
     </div>
-</div>
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/script.js"></script>
-<script src="js/events.js"></script>
-<script src="js/date_get.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/date_get.js"></script>
 
 </body>
+
 </html>
