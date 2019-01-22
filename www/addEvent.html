@@ -18,7 +18,7 @@
             // Fonction récupérant le texte entré et l'envoyant à la bdd, exécuté au clic du bouton (+)
             function recupText(){
                 // Récup. du titre
-                const titre = document.getElementById("ipTitle").value;
+                let titre = document.getElementById("ipTitle").value;
                 //console.log(titre);
                 // Récup. de la date de début 
                 let debut = document.getElementById("ipDebut").value;
@@ -40,13 +40,7 @@
                         console.info('Insert data in events')
                     }, function (tx, err) {
                         // Si y'a un pb => message d'erreur dans la console
-                        console.warn('Err[' + err.code + ']: ' + err.message)
-						
-						var title = document.getElementById("#ipAlertTitle");
-						if(document.getElementBy("#ipTitle")==="")
-							
-								
-								
+                        console.warn('Err[' + err.code + ']: ' + err.message)		
                     }); 
                 })
 			   	
@@ -122,7 +116,7 @@
         			alertTxt += "Le champ " + x.name + " n'a pas été rempli \n";
         		}
         	}
-        	alert(alertTxt
+        	alert(alertTxt);
         </script>
        
     </body>
