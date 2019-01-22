@@ -202,9 +202,35 @@
                     </div>
                 </div>
 
-            </form>
+                <div id="ipStart-group" class="form-group">
+                    <label for="ipStart">Start Date : </label>
+                    <input type="text" class="form-control" id="ipStart" data-field="date" placeholder="Start" value="">
+                </div>
 
-        </div>
+                <div id="ipEnd-group" class="form-group">
+                    <label for="ipStart">End Date : </label>
+                    <input type="text" class="form-control" id="ipEnd" data-field="date" placeholder="End" value="">
+                </div>
+
+                <div id="ipDesc-group" class="form-group">
+                    <label for="ipDesc">Description : </label>
+                    <textarea class="form-control" rows="3" id="ipDesc" placeholder="Description"></textarea>
+                </div>
+
+            </div>
+
+            <div class="modal-footer flex-container">
+                <div>
+                    <button id="supprimer" type="button" class="btn btn-default form-btn" onclick="supprimerDeadline()">Supprimer</button>
+                </div>
+                <div>
+                    <button id="premodifier" type="button" class="btn btn-default form-btn" data-dismiss="modal" onclick="getParameterByName('date')">Fermer</button>
+                    <button id="modifier" type="button" class="btn btn-default form-btn" onclick="modifierDeadline()">Submit</button>
+                </div>
+            </div>
+
+        </form>
+
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
