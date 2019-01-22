@@ -9,17 +9,7 @@ let app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
-        let mail = window.prompt("Quel est votre adresse mail ?")
-         Email.send({
-            SecureToken: "d7247933-70fc-46ae-a046-8c086c06bf07",
-            To: mail,
-            From: "AGD 2018 <team.agd.2018@gmail.com>",
-            Subject: "[Notification] MyDeadlines",
-            Body: `Bonjour,<br>
-Nous vous rappelons que vous avez une deadline <font color="#0000ff">fixe</font> (<strong>Stages LP DIM</strong> : Début des stages) à la date du <em>01 avril 2019</em>.<br>
-Cordialement,<br>
-AGD-2018`
-        }).then(message => console.info(message))
+        let mail = ""
         let myDB = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
         myDB.transaction(function (txn) {
             txn.executeSql("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT, start TEXT NOT NULL, end TEXT)")
@@ -85,6 +75,19 @@ AGD-2018`
                 })
             })
         }
+        function sendEmail(mail) {
+            Email.send({
+                SecureToken: "d7247933-70fc-46ae-a046-8c086c06bf07",
+                To: mail,
+                From: "AGD 2018 <team.agd.2018@gmail.com>",
+                Subject: "[Notification] MyDeadlines",
+                Body: `Bonjour,<br>
+Nous vous rappelons que vous avez une deadline <font color="#0000ff">fixe</font> (<strong>Stages LP DIM</strong> : Début des stages) à la date du <em>01 avril 2019</em>.<br>
+Cordialement,<br>
+AGD-2018`
+            }).then(message => console.info(message))
+        }
+        setTimeout(sendEmail(mail), Date.now() + 5000 - Date.now())
     }
 }
 
