@@ -23,7 +23,7 @@ header.navbar {
     width: 100%; height: 56px;
     z-index: 2;
 }
-
+#form-event{margin-top: 100px;}
 header.navbar.bg-primary { background-color: #F44336!important; }
 
 .container-fluid { margin-top: 56px; z-index: 1; }
@@ -124,4 +124,5 @@ span.icon:active { color: red; }
     margin-left: 8px; margin-right: 8px;
 }
 
-#ipAlertTitle{ margin-top: 5%; }
+#ipAlertTitle{ margin-top: 10%; }
+
