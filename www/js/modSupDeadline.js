@@ -70,7 +70,8 @@ function supprimerDeadline() {
         let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
         db.transaction(function (tx) {
             tx.executeSql('delete from events where id=?', [ipId], function (tx) {
-                console.log('deadline supprimé');
+                console.log('Deadline supprimé');
+                window.location="home.html";
             });
         }, function (error) {
             console.log('Transaction ERROR: ' + error.message);
@@ -96,6 +97,7 @@ function modifierDeadline() {
             let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
             db.transaction(function (tw) {
                 tw.executeSql('update events set title=?, content=?, start=?, end=? where id=?', [ipTitle, ipContent, ipStart, ipEnd, ipId], function (tw, r) {
+                    window.location="home.html";
                     console.log(r.rowsAffected);
                 });
             }, function (error) {
