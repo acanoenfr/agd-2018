@@ -54,11 +54,7 @@ let app = {
 
                                 elementStart.addEventListener('click', function () {
                                     laDateGet = elementStart.id;
-                                    //if (nbRows == 1) {
-                                        window.location.assign("modSupDeadline.html?date=" + laDateGet);
-                                    /*} else {
-                                        window.location.assign("list.html?date=" + laDateGet);
-                                    }*/
+                                    window.location.assign("processDate.html?date=" + laDateGet);
                                 })
                             } else {
                                 elementStart.setAttribute('class', 'event')
