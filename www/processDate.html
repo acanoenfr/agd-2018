@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			let myDB = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
+
+			function findGetParameter(parameterName) {
+			    var result = null,
+			        tmp = [];
+			    location.search
+			        .substr(1)
+			        .split("&")
+			        .forEach(function (item) {
+			          tmp = item.split("=");
+			          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+			        });
+			    return result;
+			}
+
+			var date = findGetParameter("date");
+
+			myDB.transaction(function (txn) {
+			   	txn.executeSql("SELECT COUNT(*) AS number FROM events WHERE start = ?", [date], function (tx, res) {
+			   		console.log(res.rows[0].number);
+			      	if(res.rows[0].number == 1) {
+			           	window.location.assign("modSupDeadline.html?date=" + date);
+			      	} else {
+			           	window.location.assign("list.html?date=" + date);
+			      	}
+			  	}, function (tx, err) {
+			   		console.warn('Err[' + err.code + ']: ' + err.message)
+			  	});
+			});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
