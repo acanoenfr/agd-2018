@@ -46,7 +46,7 @@ myDB.transaction(function (txn) {
                 button.append('pour le ' + res.rows[i].start);
             }
             button.classList.add('btn');
-            button.classList.add('btn-outline-primary');
+            button.classList.add('buttn');
             button.href = "modSupDeadline.html?date=" + date + "&id=" + res.rows[i].id;
             let br = document.createElement("br");
             list.append(br);

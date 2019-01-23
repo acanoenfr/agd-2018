@@ -126,3 +126,16 @@ span.icon:active { color: red; }
 
 #ipAlertTitle{ margin-top: 10%; }
 
+/*****************************/
+/*** Boutons pour la liste ***/
+/********* list.html *********/
+
+.buttn {
+    text-align: left;
+    width: 100%; height: 48px;
+    border-radius: 0;
+}
+
+.buttn:active {
+    background-color: #ddd;
+}
