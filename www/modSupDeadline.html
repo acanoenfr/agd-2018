@@ -9,6 +9,21 @@
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+        <!--  function deleteALl(id) {        This function delete all deadlines
+   
+               let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
+               db.transaction(function (tw) {
+                   tw.executeSql('delete from events', [], function (tw, r) {
+                       console.log(r.rowsAffected);
+                   });
+                    },
+                   function (error) {
+                       console.log(error);
+                   },
+                   function () {
+                       alert('DeadLine Modifié');
+                   });    
+           }  */ -->
 </head>
 <header class="navbar navbar-dark bg-primary">
     <span class="navbar-brand mb-0 h1">Modifier ou supprimer</span>
@@ -26,7 +41,7 @@
                     Modifier Deadline
                 </div>
                 <div class="modal-body">
-                    <div id="ipAlertTitle" class="alert alert-danger hide" role="alert">
+                    <div id="ipAlertTitle" class="alert alert-danger d-none" role="alert">
                         Title and Start should not be Empty
                     </div>
                     <div id="ipTitle-group" class="form-group">
@@ -34,7 +49,7 @@
                         <input type="hidden" class="form-control" id="ipId" value="">
                         <input type="text" class="form-control" id="ipTitle" placeholder="Title" value="">
                     </div>
-                    <div id="ipAlertStartEnd" class="alert alert-danger" role="alert">
+                    <div id="ipAlertStartEnd" class="alert alert-danger d-none" role="alert">
                         Start DateTime should be earlier than End DateTime
                     </div>
                     <div id="ipStart-group" class="form-group">

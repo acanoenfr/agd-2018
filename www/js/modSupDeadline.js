@@ -89,8 +89,9 @@ function modifierDeadline() {
     let dateEnd = $("#ipEnd").val();
     let ipEnd = dateEnd.replace(/\b0/g, '');
     let ipContent = $("#ipDesc").val();
-    if (ipTitle == "" || ipStart == "" || ipTitle == null || ipStart == null) {
-        $("#ipAlertTitle").removeClass("hide");
+    if (ipTitle == "" || dateStart == "" || ipTitle == null || dateStart == null) {
+        $("#ipAlertTitle").removeClass("d-none");
+        
     } else {
         var c = confirm("Êtes-vous sûr de modifier le Deadline? ");
         if (c) {
