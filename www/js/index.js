@@ -61,11 +61,11 @@ let app = {
                                 elementEnd.appendChild(icon2)
                                 elementStart.addEventListener('click', function () {
                                     laDateGet = elementStart.id;
-                                    window.location.assign("modSupDeadline.html?date=" + laDateGet);
+                                    window.location.assign("processDate.html?date=" + laDateGet);
                                 })
                                 elementEnd.addEventListener('click', function () {
                                     laDateGet = elementStart.id;
-                                    window.location.assign("modSupDeadline.html?date=" + laDateGet);
+                                    window.location.assign("processDate.html?date=" + laDateGet);
                                 })
                             }
                         }

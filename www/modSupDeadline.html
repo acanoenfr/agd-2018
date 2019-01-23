@@ -18,14 +18,10 @@
 </header>
 
 <body onload="remplirChampsaModifier('date')">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <form>
-                <div class="modal-header">
-                    Modifier Deadline
-                </div>
-                <div class="modal-body">
+    <div id="form-event" class="card-fade">
+        <div class="cardForm-dialog">
+            <div class="cardForm-content">
+                <form id="target">
                     <div id="ipAlertTitle" class="alert alert-danger hide" role="alert">
                         Title and Start should not be Empty
                     </div>
@@ -50,18 +46,16 @@
                         <label for="ipDesc">Description : </label>
                         <textarea class="form-control" rows="3" id="ipDesc" placeholder="Description"></textarea>
                     </div>
-                </div>
-                <div class="modal-footer flex-container">
-                    <div>
-                        <button id="supprimer" type="button" class="btn btn-default form-btn" onclick="supprimerDeadline()">Supprimer</button>
+                    <div class="flex-container">
+                        <div>
+                            <button id="supprimer" type="button" class="btn btn-outline-danger form-btn" onclick="supprimerDeadline()">Supprimer</button>
+                        </div>
+                        <div>
+                            <button id="modifier" type="button" class="btn btn-primary form-btn" onclick="modifierDeadline()">Modifier</button>
+                        </div>
                     </div>
-                    <div>
-                        <button id="premodifier" type="button" class="btn btn-default form-btn" data-dismiss="modal"
-                            onclick="getParameterByName('date')">Fermer</button>
-                        <button id="modifier" type="button" class="btn btn-default form-btn" onclick="modifierDeadline()">Submit</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
     <script src="js/jquery.min.js"></script>
