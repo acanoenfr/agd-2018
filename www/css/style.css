@@ -87,6 +87,9 @@ button.cd-btn {
 
 .flex-container{ display: flex; justify-content: space-between; }
 
+.cd-btn-form {
+    margin-right: 16px;
+}
 
 /* Boutons en dessous du calendrier */
 
@@ -126,7 +129,7 @@ button.cd-btn {
     font-size: 0.9375rem;
     text-transform: uppercase;
     font-weight: 600;
-    margin-bottom: 2px; margin-left: 11px;
+    margin-left: 11px;
 }
 
 
