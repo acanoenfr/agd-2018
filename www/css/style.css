@@ -1,4 +1,32 @@
 /****************************/
+/** Style du header/navbar **/
+/****************************/
+
+
+/* Navbar */
+
+header.navbar {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 56px;
+    z-index: 2;
+    justify-content: flex-start;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20);
+}
+#form-event{ margin-top: 100px; }
+header.navbar.bg-primary { background-color: #F44336!important; }
+
+.container-fluid { margin-top: 56px; z-index: 1; }
+
+.navbar-brand { font-size: 1rem; margin-left: 16px; padding-top: 4px; }
+.navbar-brand.home { margin-left: 0px; }
+
+
+/* Boutons dans le header */
+
+.navbar-icon { fill: white; }
+
+
+/****************************/
 /* Style de la page d'intro */
 /******** index.html ********/
 
@@ -15,25 +43,6 @@
 /******************************/
 /* Style de la page d'accueil */
 /********* home.html **********/
-
-/* Navbar */
-
-header.navbar {
-    position: fixed; top: 0; left: 0;
-    width: 100%; height: 56px;
-    z-index: 2;
-}
-#form-event{margin-top: 100px;}
-header.navbar.bg-primary { background-color: #F44336!important; }
-
-.container-fluid { margin-top: 56px; z-index: 1; }
-
-
-/* Boutons dans le header */
-
-.icon { font-size: 31px; color: white; }
-
-svg.svg-inline--fa.fa-plus.fa-w-14 { width: 20px; }
 
 
 /* Calendrier */
@@ -78,6 +87,14 @@ button.cd-btn {
 
 .flex-container{ display: flex; justify-content: space-between; }
 
+.cd-btn-form {
+    margin-right: 16px;
+}
+
+/* Boutons en dessous du calendrier */
+
+.flex-container.home { margin-top: 8px; }
+
 
 /*****************************/
 /* Style de la page addEvent */
@@ -86,23 +103,34 @@ button.cd-btn {
 /* Bouton d'envoi */
 
 .btn-submit {
-    width: 50px; height: 50px;
+    height: 48px;
     background-color: #F44336;
-    border-radius: 50%; border-style: none;
-    position: fixed; right: 0; bottom: 0;
-    margin-right: 8px; margin-bottom: 8px;
+    border-radius: 24px; border-style: none;
+    position: fixed;
+    right: 0; bottom: 0;
+    margin-right: 16px; margin-bottom: 16px;
+    padding-left: 12px; padding-right: 20px;
+    color: white;
+    display: flex;
+    justify-content: flex-start; align-items: center;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.20);
+    transition-timing-function: ease-in-out;
+    transition-duration: .2s;
 }
-
 .btn-submit:active {
-    background-color: white;
-    border-style: solid; border-width: 1px; border-color: red;
+    background-color: #C62828;
+    box-shadow: 0 12px 17px 2px rgba(0,0,0,0.14), 0 5px 22px 4px rgba(0,0,0,0.12), 0 7px 8px -4px rgba(0,0,0,0.20);
 }
+.btn-submit:focus { outline: none; }
 
-.btn-submit:focus { outline:none; }
+.plus-btn { margin-bottom: 2px; }
 
-span.icon:active { color: red; }
-
-.btn-submit.svg-inline--fa.fa-plus.fa-w-14 { height: 20px; }
+.btn-submit-label {
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-left: 11px;
+}
 
 
 /* Date picker */
@@ -120,9 +148,48 @@ span.icon:active { color: red; }
 }
 
 #target{
-    margin-top: 55px; margin-bottom: 66px;
+    margin-top: 55px; margin-bottom: 80px;
     margin-left: 8px; margin-right: 8px;
 }
 
 #ipAlertTitle{ margin-top: 10%; }
 
+
+/*****************************/
+/*** Boutons pour la liste ***/
+/********* list.html *********/
+
+
+/* Titre de la liste */
+
+.list-title { margin-left: 8px; }
+
+
+/* Eléments de la liste */
+
+.buttn {
+    text-align: left;
+    width: 100%; height: 48px;
+    background-color: white;
+    padding-top: 14px;
+    padding-left: 16px; padding-right: 16px;
+    border-radius: 0;
+    color: black;
+}
+.buttn:active {
+    background-color: #ddd;
+    color: black;
+}
+.buttn:visited { color: black; }
+.buttn:hover { color: black; }
+.buttn:focus { outline: none; }
+
+
+/*****************************/
+/** Suppression des bordures */
+/** sur les boutons outline **/
+/*****************************/
+
+.btn-outline-primary { border-style: none; }
+.btn-outline-secondary { border-style: none; color: black; }
+.btn-outline-danger { border-style: none; }
