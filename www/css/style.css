@@ -39,6 +39,12 @@ header.navbar.bg-primary { background-color: #F44336!important; }
     align-items: center;
 }
 
+.img-title > div {
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+}
+
 
 /******************************/
 /* Style de la page d'accueil */
