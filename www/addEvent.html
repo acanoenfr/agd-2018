@@ -12,6 +12,24 @@
 
 
         <script type="text/javascript">
+			function checkTitre() {
+				let elm = document.getElementById("ipTitle");
+				if (elm.value != "") {
+					elm.style.backgroundColor = "#fff";
+				} else {
+					elm.style.backgroundColor = "#fcc2c2";
+				}
+			}
+			
+			function checkDate() {
+				let elm = document.getElementById("ipDebut");
+				if (elm.value != "") {
+					elm.style.backgroundColor = "#fff";
+				} else {
+					elm.style.backgroundColor = "#fcc2c2";
+				}
+			}
+			
             // Ouverture de la base de données
             let myDB = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
 
@@ -19,18 +37,22 @@
             function recupText(){
                 // Récup. du titre
                 let titre = document.getElementById("ipTitle").value;
-                //console.log(titre);
+                
                 // Récup. de la date de début 
                 let debut = document.getElementById("ipDebut").value;
                 debut = debut.replace(/\b0/g, ''); // Exclusion des zéro inutiles (par exemple pour le mois de janvier: 1 au lieu de 01)
-                //console.log(debut);
+               
                 // Idem pour la date de fin
                 let end = document.getElementById("ipEnd").value;
                 end = end.replace(/\b0/g, '');
-                //console.log(end);
+                
                 // Récup. de la description de la deadline
                 let desc = document.getElementById("ipDesc").value;
-                //console.log(desc);
+         
+				if (titre =="" || debut ==""){
+					return false;
+				} 
+					else {
 				
                 // Transaction SQL
                 myDB.transaction(function (txn) {
@@ -41,18 +63,20 @@
                     }, function (tx, err) {
                         // Si y'a un pb => message d'erreur dans la console
                         console.warn('Err[' + err.code + ']: ' + err.message)		
-                    }); 
+                    }) 
                 })
-			   	
+					
+					window.location='home.html';	
+					return true;	
+			   	}
             }
         </script>
     </head>
  
     <header class="navbar navbar-dark bg-primary">
-        <span class="navbar-brand mb-0 h1">Ajouter</span>
-        <span onclick="window.location='home.html';" class="icon">
-            <i class="fas fa-arrow-left"></i>
-        </span> 
+        <!-- Bouton retour en SVG inline -->
+        <svg onclick="window.location='home.html';" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="white"/></svg>
+        <span class="navbar-brand mb-0 h1">Ajouter</span>        
     </header>
     <body>
         <div class="card"></div>
@@ -65,32 +89,23 @@
                             </div>
                         <div id="ipTittle-group" class="form-group">
                             <label for="ipTitle">Titre : </label>
-                            <input type="text" class="form-control" id="ipTitle" placeholder="Titre">
+                            <input type="text" class="form-control" id="ipTitle" onkeyup="checkTitre();">
                         </div>
-                        <!--<div id="ipAllDay-group" class="checkbox">
-                            <label>
-                                <input id="ipAllDay" type="checkbox" checked> Tous les jours
-                            </label>
-                        </div>-->
-                        <!--<div id="ipAlertStartEnd" class="alert alert-danger" role="alert">
-                           La date et l'heure de début doivent être antérieures à la date et heure de fin 
-                        </div>-->
                         <div id="ipStart-group" class="form-group">
                             <label for="ipDebut">Date Début : </label>
-                            <input type="date" class="form-control" id="ipDebut" placeholder="Début">
+                            <input type="date" class="form-control" id="ipDebut">
                         </div>
                         <div id="ipEnd-group" class="form-group">
                             <label for="ipEnd">Date Fin : </label>
-                            <input type="date" class="form-control" id="ipEnd" placeholder="Fin">
+                            <input type="date" class="form-control" id="ipEnd">
                         </div>
                         <div id="idEnd-group" class="form-group">
                             <label for="ipDesc">Description: </label>
-                            <textarea class="form-control" rows="3" id="ipDesc" placeholder="Description"></textarea>
+                            <textarea class="form-control" rows="3" id="ipDesc"></textarea>
                         </div>
-                        <button id="submit" type="button" class="btn-submit" id="buttonSoum" onclick="recupText()">
-                            <span onclick="window.location='home.html';" class="icon">
-                                <i class="fas fa-plus"></i>
-                            </span> 
+                        <button  type="button" class="btn-submit" id="buttonSoum" onclick="recupText()">
+                            <svg class="plus-btn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="white"/></svg>
+                            <div class="btn-submit-label">Ajouter</div>
                         </button>
                     </form> 
                 </div>
@@ -105,7 +120,7 @@
         <script src="js/index.js"></script>
         
         <script>
-            var inputList = document.forms['ipTitle'].elements;
+            var inputList = document.forms['ipTitle'];
         	var alertTxt = "";
         	for (unInput in inputList)
         	{

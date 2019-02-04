@@ -10,18 +10,15 @@
     </head>
     <body>
         <header class="navbar navbar-dark bg-primary">
-            <span class="navbar-brand mb-0 h1">Deadline</span>
-            <span onclick="window.location='addEvent.html';" class="icon">
-                <i class="fas fa-plus"></i>
-            </span>
+            <span class="navbar-brand home mb-0 h1">Deadline</span>
         </header>
         <div class="container-fluid">
             <div class="card">
                 <div class="form-inline">
                     <h6 class="card-header" id="monthAndYear">Mois et année</h6>
                     <div class="cd-btn-form">
-                        <button id="previous" class="cd-btn" onclick="previous()"><i class="fas fa-chevron-left"></i></button>
-                        <button id="next" class="cd-btn" onclick="next()"><i class="fas fa-chevron-right"></i></button>
+                        <button id="previous" class="cd-btn" onclick="previous()"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/><path d="M0 0h24v24H0z" fill="none"/></svg></button>
+                        <button id="next" class="cd-btn" onclick="next()"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/><path d="M0 0h24v24H0z" fill="none"/></svg></button>
                     </div>
                 </div>
                 
@@ -42,6 +39,13 @@
                     </tbody>
                 </table>
             </div>
+            <div class="flex-container home">
+                <div></div>
+                <div>
+                    <button type="button" class="btn-sm btn-outline-secondary form-btn" onclick="window.location = 'historique.html'">Historique</button>
+                    <button type="button" class="btn-sm btn-outline-primary form-btn" onclick="window.location = 'addEvent.html'">Ajouter</button>
+                </div>
+            </div>
         </div>
         <script src="cordova.js"></script>
         <script src="js/all.min.js"></script>
@@ -49,7 +53,8 @@
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/script.js"></script>
-        <!--<script src="js/smtp.js"></script>-->
+        <script src="js/smtp.js"></script>
+        <!--<script src="js/notification.js"></script>-->
         <script src="js/index.js"></script>
         <!--<script src="js/permissions.js"></script>-->
         <!--<script src="js/notifications-test.js"></script>-->

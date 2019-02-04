@@ -9,7 +9,6 @@ let app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
-        let mail = ""
         let myDB = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
         myDB.transaction(function (txn) {
             txn.executeSql("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT, start TEXT NOT NULL, end TEXT)")
@@ -61,11 +60,11 @@ let app = {
                                 elementEnd.appendChild(icon2)
                                 elementStart.addEventListener('click', function () {
                                     laDateGet = elementStart.id;
-                                    window.location.assign("modSupDeadline.html?date=" + laDateGet);
+                                    window.location.assign("processDate.html?date=" + laDateGet);
                                 })
                                 elementEnd.addEventListener('click', function () {
                                     laDateGet = elementStart.id;
-                                    window.location.assign("modSupDeadline.html?date=" + laDateGet);
+                                    window.location.assign("processDate.html?date=" + laDateGet);
                                 })
                             }
                         }
@@ -75,19 +74,60 @@ let app = {
                 })
             })
         }
-        function sendEmail(mail) {
+        // Send notification function
+        function sendNotif(mail, name, start, content = null, end = null) {
+            let color = "#0000ff"
+            let type = (color === "#0000ff") ? "fixe" : "floue"
+            type = `<font color="${color}">${type}</font>`
+            content = (content !== null) ? content : "Aucun contenu"
+            name = `<strong>${name}</strong>`
+            let startFormat = setDateFormat(start)
+            let endFormat = setDateFormat(end)
             Email.send({
                 SecureToken: "d7247933-70fc-46ae-a046-8c086c06bf07",
                 To: mail,
                 From: "AGD 2018 <team.agd.2018@gmail.com>",
                 Subject: "[Notification] MyDeadlines",
                 Body: `Bonjour,<br>
-Nous vous rappelons que vous avez une deadline <font color="#0000ff">fixe</font> (<strong>Stages LP DIM</strong> : Début des stages) à la date du <em>01 avril 2019</em>.<br>
+Nous vous rappelons que vous avez une deadline ${type} (${name} : ${content}) à la date du ${startFormat}.<br>
 Cordialement,<br>
 AGD-2018`
             }).then(message => console.info(message))
         }
-        setTimeout(sendEmail(mail), Date.now() + 5000 - Date.now())
+
+        // Set date format function
+        function setDateFormat(date) {
+            if (date !== null) {
+                date = date.split("-")
+                return `<em>${addZero(date[2])}/${addZero(date[1])}/${date[0]}</em>`
+            }
+            return null
+        }
+
+        // Add zeros if integer is inferior to 10
+        function addZero(int) {
+            if (int < 10) {
+                return `0${int}`
+            }
+            return `${int}`
+        }
+
+        setTimeout(function(){
+            sendNotif("", "Devoir à rendre pour les TP1A", "2019-2-25", "De 10H à 11H")
+            cordova.plugins.notification.local.schedule([
+                {
+                    id: 0,
+                    title: "Devoir à rendre pour les TP1A",
+                    text: "De 10H à 11H",
+                    trigger: {
+                        // at: new Date("2019-01-23 14:10:00")
+                        in: 5,
+                        unit: "second"
+                    },
+                    vibrate: true
+                }
+            ])
+        }, Date.now() + 5000 - Date.now())
     }
 }
 
