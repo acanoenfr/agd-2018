@@ -4,11 +4,10 @@ function afficherHistorique() {
     var month = today.getMonth()+1;
     var year = today.getFullYear();
     var datesStart=[];
-    var todayDate= formatDate("".concat(year,"-",month,"-",day));
+    var todayDate= ("".concat(year,"-",month,"-",day));
     let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
     db.transaction(function (tx) {
-        tx.executeSql('Select * from events order by start ', [], function (tx, result) {
-            console.log(result);
+        tx.executeSql('Select * from events where start<? ', [todayDate], function (tx, result) {
             for(let i=0; i<result.rows.length; i++){                      
                 datesStart.push(result.rows[i]);
                 datesStart[i].start=formatDate(result.rows[i].start);
