@@ -31,28 +31,26 @@ function afficherHistorique() {
     }, function () {      
     });
 }
-function orderByStart(){
-    
-}
-function formatDate(date) {
-var dateN;
 
-if (date.length == 9) {
-if ((date.lastIndexOf("-")) - (date.indexOf("-")) < 3) {
-    dateN = date.substr(0, 5).concat("0", date.substr(5, 8));
-}
-else {
-    dateN = date.substr(0, 8).concat("0", date.substr(8, 8));
-}
-}
-if (date.length == 8) {
-var an = date.substr(0, 5);
-var mois = "0".concat(date.substr(5, 2));
-var jour = "0".concat(date.substr(7, 8));
-dateN = an.concat(mois, jour);
-}
-if(date.length==10){
-dateN=date;
-}
-return dateN;
+function formatDate(date) {
+    var dateN;
+
+    if (date.length == 9) {
+        if ((date.lastIndexOf("-")) - (date.indexOf("-")) < 3) {
+            dateN = date.substr(0, 5).concat("0", date.substr(5, 8));
+        }
+        else {
+            dateN = date.substr(0, 8).concat("0", date.substr(8, 8));
+        }
+    }
+        if (date.length == 8) {
+        var an = date.substr(0, 5);
+        var mois = "0".concat(date.substr(5, 2));
+        var jour = "0".concat(date.substr(7, 8));
+        dateN = an.concat(mois, jour);
+    }
+    if(date.length==10){
+        dateN=date;
+    }
+    return dateN;
 }
