@@ -33,8 +33,8 @@
                             return 0;
                         })
                     }
-                $("#body").append('<div><h3>Deadlines Passées</h3></div>');
-                $("#body").append('<table class="modal-dialog"><tr class="modal-dialog"><td class="modal-dialog">Titre</td><td>Description</td><td>Début</td><td>Fin</td></tr>');
+                               
+                $("#body").append('<table class="modal-dialog"><tr class="modal-dialog"><td class="modal-dialog"><h6>Titre</h6></td><td><h6>Description</h6></td><td><h6>Début</h6></td><td><h6>Fin</h6></td></tr>');
                     for (let i = 0; i<datesStart.length; i++) { 
                         $("table").append("<tr class='modal-body'><td class='modal-body'>"+datesStart[i].title+"</td><td>"+datesStart[i].content+"</td><td>"+datesStart[i].start+"</td><td>"+datesStart[i].end+"</td></tr></table>")              
                      }
@@ -79,7 +79,8 @@
                     <i class="fas fa-arrow-left"></i>
                 </span> 
             </header>
-   <div id="body" >
+   <div id="body" class="container-fluid" >
+        <h5>Deadlines Passées</h5>
         </div>
 
 
