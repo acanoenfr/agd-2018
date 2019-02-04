@@ -26,11 +26,9 @@ function recupText(){
     
     // Récup. de la date de début 
     let debut = document.getElementById("ipDebut").value;
-    debut = debut.replace(/\b0/g, ''); // Exclusion des zéro inutiles (par exemple pour le mois de janvier: 1 au lieu de 01)
    
     // Idem pour la date de fin
     let end = document.getElementById("ipEnd").value;
-    end = end.replace(/\b0/g, '');
     
     // Récup. de la description de la deadline
     let desc = document.getElementById("ipDesc").value;

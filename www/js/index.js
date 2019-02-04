@@ -12,7 +12,6 @@ let app = {
         let myDB = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
         myDB.transaction(function (txn) {
             txn.executeSql("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT, start DATE NOT NULL, end DATE)")
-            // txn.executeSql(`INSERT INTO events(title, color, start, end) VALUES(?, ?, ?, ?)`, ['Rattrapage TP SQL', '#ff0000', '2019-2-14', '2019-2-28'])
         })
         showCalendar(currentMonth, currentYear)
         showEvents()
