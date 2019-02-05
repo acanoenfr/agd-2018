@@ -1,5 +1,5 @@
 var donnees=[];
-let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
+ let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
 db.transaction(function (tx) {
     tx.executeSql('Select * from events', [], function (tx, result) {
         for(let i=0; i<result.rows.length; i++){                      
@@ -18,24 +18,6 @@ db.transaction(function (tx) {
     console.log(donnees);   
 });
 
-
-var stockData = [  
-        {
-            Symbol: "AAPL",
-            Company: "Apple Inc.",
-            Price: 132.54
-        },
-        {
-            Symbol: "INTC",
-            Company: "Intel Corporation",
-            Price: 33.45
-        },
-        {
-            Symbol: "GOOG",
-            Company: "Google Inc",
-            Price: 554.52
-        },
-    ];
 function convertArrayOfObjectsToCSV(args) {  
         var result, ctr, keys, columnDelimiter, lineDelimiter, data;
 
@@ -77,7 +59,7 @@ le data et le retourne en fichier csv pour telecharger
 	function downloadCSV(args) {
 		var data, filename, link; 
 		var csv = convertArrayOfObjectsToCSV({
-			data: stockData
+			data: donnees
 		}); 
 
 		if(csv == null) return; 
