@@ -1,3 +1,24 @@
+var donnees=[];
+let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
+db.transaction(function (tx) {
+    tx.executeSql('Select * from events', [], function (tx, result) {
+        for(let i=0; i<result.rows.length; i++){                      
+            donnees.push(result.rows[i]);
+            donnees.sort(function(a,b){
+                if(a.start<b.start){
+                    return -1; }
+                if(a.start>b.start){
+                    return 1; }
+                return 0;});
+             }                                  
+    });
+}, function (error) {
+    console.log('Transaction ERROR: ' + error.message);
+}, function () {   
+    console.log(donnees);   
+});
+
+
 var stockData = [  
         {
             Symbol: "AAPL",
