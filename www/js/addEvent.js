@@ -16,6 +16,10 @@ function checkDate() {
 	}
 }
 
+function subDays(dt, n) {
+	return (new Date(dt.setDate(dt.getDate() - n))).toString()
+}
+
 // Ouverture de la base de données
 let myDB = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
 
@@ -42,7 +46,7 @@ function recupText(){
 	        // Insère les données entrées dans la table events
 	        txn.executeSql(`INSERT INTO events(title, content, start, end) VALUES(?, ?, ?, ?)`, [ titre, desc, debut, end ], function (tx, res) {
 	            // Si ça marche => on indique dans la console dev que ça marche
-	            console.info('Insert data in events');
+				console.info('Insert data in events');
 	        }, function (tx, err) {
 	            // Si y'a un pb => message d'erreur dans la console
 	            console.warn('Err[' + err.code + ']: ' + err.message);

@@ -35,16 +35,16 @@ let app = {
                             let elementEnd = document.getElementById(events[i].end)
                             if (!events[i].end) {
                                 txn.executeSql("SELECT COUNT(*) AS number FROM events WHERE start = ?", [events[i].start], function (tx2, res2) {
-                                    elementStart.setAttribute('class', 'event');
-                                    let icon = document.createElement('span');
-                                    icon.setAttribute('style', `color: white; font-size: 1rem; background-color: blue; width: 1.6rem; border-radius: 25%;`);
-                                    icon.innerHTML = res2.rows[0].number;
-                                    elementStart.appendChild(icon);
+                                    elementStart.setAttribute('class', 'event')
+                                    let icon = document.createElement('span')
+                                    icon.setAttribute('style', `color: white; font-size: 1rem; background-color: blue; width: 1.6rem; border-radius: 25%;`)
+                                    icon.innerHTML = res2.rows[0].number
+                                    elementStart.appendChild(icon)
                                 })
 
                                 elementStart.addEventListener('click', function () {
-                                    laDateGet = elementStart.id;
-                                    window.location.assign("processDate.html?date=" + laDateGet);
+                                    laDateGet = elementStart.id
+                                    window.location.assign("processDate.html?date=" + laDateGet)
                                 })
                             } else {
                                 elementStart.setAttribute('class', 'event')
@@ -58,12 +58,12 @@ let app = {
                                 icon2.setAttribute('style', `color: red; font-size: 1rem;`)
                                 elementEnd.appendChild(icon2)
                                 elementStart.addEventListener('click', function () {
-                                    laDateGet = elementStart.id;
-                                    window.location.assign("processDate.html?date=" + laDateGet);
+                                    laDateGet = elementStart.id
+                                    window.location.assign("processDate.html?date=" + laDateGet)
                                 })
                                 elementEnd.addEventListener('click', function () {
-                                    laDateGet = elementStart.id;
-                                    window.location.assign("processDate.html?date=" + laDateGet);
+                                    laDateGet = elementStart.id
+                                    window.location.assign("processDate.html?date=" + laDateGet)
                                 })
                             }
                         }
@@ -110,23 +110,27 @@ AGD-2018`
             }
             return `${int}`
         }
+        
+        function subDays(dt, n) {
+            return (new Date(dt.setDate(dt.getDate() - n))).getTime()
+        }
 
-        setTimeout(function(){
-            sendNotif("", "Devoir à rendre pour les TP1A", "2019-2-25", "De 10H à 11H")
-            cordova.plugins.notification.local.schedule([
-                {
-                    id: 0,
-                    title: "Devoir à rendre pour les TP1A",
-                    text: "De 10H à 11H",
-                    trigger: {
-                        // at: new Date("2019-01-23 14:10:00")
-                        in: 5,
-                        unit: "second"
-                    },
-                    vibrate: true
+        myDB.transaction(function (txn) {
+            myDB.executeSql("SELECT * FROM events", [], function (tx, res) {
+                let events = res.rows
+                for (let i = 0; i < events.length; i++) {
+                    let now = Date.now()
+                    let twoWeeks = subDays((new Date(events[i].start)).getTime(), 14);
+                    let oneDay = subDays((new Date(events[i].start)).getTime(), 1);
+                    setTimeout(function () {
+                        sendNotif("contact@acanoen.fr", events[i].name, events[i].start, events[i].content)
+                    }, twoWeeks - now)
+                    setTimeout(function () {
+                        sendNotif("contact@acanoen.fr", events[i].name, events[i].start, events[i].content)
+                    }, oneDay - now)
                 }
-            ])
-        }, Date.now() + 5000 - Date.now())
+            })
+        })
     }
 }
 
