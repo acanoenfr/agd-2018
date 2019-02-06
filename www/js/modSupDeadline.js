@@ -10,9 +10,9 @@ function remplirChampsaModifier(dateGet) {
         });
         if (id) {
             tz.executeSql("select * from events where start=? and id=?", [date, id], function (tz, resul) {
-                var dateStart = formatDate(resul.rows[0].start);
+                var dateStart = (resul.rows[0].start);
                 console.log(dateStart);
-                var dateEnd = formatDate(resul.rows[0].end);
+                var dateEnd = (resul.rows[0].end);
                 console.log(dateEnd);
                 $("#ipStart").val(dateStart);
                 $("#ipEnd").val(dateEnd);
@@ -22,9 +22,9 @@ function remplirChampsaModifier(dateGet) {
             });
         } else {
             tz.executeSql("select * from events where start=?", [date], function (tz, resul) {
-                var dateStart = formatDate(resul.rows[0].start);
+                var dateStart = (resul.rows[0].start);
                 console.log(dateStart);
-                var dateEnd = formatDate(resul.rows[0].end);
+                var dateEnd = (resul.rows[0].end);
                 console.log(dateEnd);
                 $("#ipStart").val(dateStart);
                 $("#ipEnd").val(dateEnd);
@@ -82,12 +82,9 @@ function supprimerDeadline() {
 
 function modifierDeadline() {
     let ipId = $("#ipId").val();
-    console.log(ipId);
     let ipTitle = $("#ipTitle").val();
-    let dateStart = $("#ipStart").val();
-    let ipStart = dateStart.replace(/\b0/g, '');             
+    let dateStart = $("#ipStart").val();            
     let dateEnd = $("#ipEnd").val();
-    let ipEnd = dateEnd.replace(/\b0/g, '');
     let ipContent = $("#ipDesc").val();
     if (ipTitle == "" || dateStart == "" || ipTitle == null || dateStart == null) {
         $("#ipAlertTitle").removeClass("d-none");
@@ -97,7 +94,7 @@ function modifierDeadline() {
         if (c) {
             let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
             db.transaction(function (tw) {
-                tw.executeSql('update events set title=?, content=?, start=?, end=? where id=?', [ipTitle, ipContent, ipStart, ipEnd, ipId], function (tw, r) {
+                tw.executeSql('update events set title=?, content=?, start=?, end=? where id=?', [ipTitle, ipContent, dateStart, dateEnd, ipId], function (tw, r) {
                     window.location="home.html";
                     console.log(r.rowsAffected);
                 });
