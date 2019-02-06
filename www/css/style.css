@@ -108,6 +108,7 @@ td { width: 5%; }
     border-style: none;
     background-color: #fafafa;
     box-shadow: none;
+    margin: 0;
 }
 
 .table-bordered, .table tr, .table thead th, .table-bordered td, .table-bordered th {
@@ -171,6 +172,13 @@ button.cd-btn:focus {
     transition-timing-function: ease-in-out;
     transition-duration: .2s;
 }
+
+.btn-submit.onhome {
+    margin-bottom: 72px;
+    width: 48px;
+    padding-right: 12px;
+}
+
 .btn-submit:active {
     background-color: #C62828;
     box-shadow: 0 12px 17px 2px rgba(0,0,0,0.14), 0 5px 22px 4px rgba(0,0,0,0.12), 0 7px 8px -4px rgba(0,0,0,0.20);
