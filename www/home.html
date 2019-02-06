@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">        
     </head>
-    <body>
+    <body onload="afficherAVenir()">
         <header class="navbar navbar-dark bg-primary">
             <span class="navbar-brand home mb-0 h1">My Deadlines</span>
         </header>
@@ -39,7 +39,6 @@
             <div class="flex-container home">
                 <div></div>
                 <div>
-                    <button type="button" class="btn-sm btn-outline-secondary form-btn" onclick="window.location = 'Historique.html';">Historique</button>
                     <button type="button" class="btn-sm btn-outline-primary form-btn" onclick="window.location = 'addEvent.html';">Ajouter</button>
                 </div>
             </div>

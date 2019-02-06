@@ -22,6 +22,8 @@ historiquebtn.click(function() {
 
 	$("#nav-historique span").text("Historique");
 	historiquebtn.addClass("current");
+
+	window.location = "Historique.html";
 });
 
 exporterbtn.click(function() {
