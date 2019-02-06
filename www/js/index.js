@@ -89,7 +89,7 @@ Nous vous rappelons que vous avez une deadline ${type} (${name} : ${content}) à
 Cordialement,<br>
 AGD-2018`
             }).then(message => console.info(message))
-        }*/
+        }
 
         // Set date format function
         function setDateFormat(date) {
