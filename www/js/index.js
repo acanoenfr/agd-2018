@@ -116,17 +116,17 @@ AGD-2018`
         }
 
         myDB.transaction(function (txn) {
-            myDB.executeSql("SELECT * FROM events", [], function (tx, res) {
+            txn.executeSql("SELECT * FROM events", [], function (tx, res) {
                 let events = res.rows
                 for (let i = 0; i < events.length; i++) {
                     let now = Date.now()
                     let twoWeeks = subDays((new Date(events[i].start)), 14)
                     let oneDay = subDays((new Date(events[i].start)), 1)
                     setTimeout(function () {
-                        sendNotif("lineproex@gmail.com", events[i].name, events[i].start, events[i].content)
+                        sendNotif("vgjulienot@gmail.com", events[i].name, events[i].start, events[i].content)
                     }, twoWeeks - now)
                     setTimeout(function () {
-                        sendNotif("lineproex@gmail.com", events[i].name, events[i].start, events[i].content)
+                        sendNotif("vgjulienot@gmail.com", events[i].name, events[i].start, events[i].content)
                     }, oneDay - now)
                 }
             })
