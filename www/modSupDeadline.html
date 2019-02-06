@@ -1,84 +1,63 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Calendrier | JavaScript</title>
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-        <!--  function deleteALl(id) {        This function delete all deadlines
-   
-               let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
-               db.transaction(function (tw) {
-                   tw.executeSql('delete from events', [], function (tw, r) {
-                       console.log(r.rowsAffected);
-                   });
-                    },
-                   function (error) {
-                       console.log(error);
-                   },
-                   function () {
-                       alert('DeadLine Modifié');
-                   });    
-           }  */ -->
-</head>
-<header class="navbar navbar-dark bg-primary">
-    <!-- Bouton retour en SVG inline -->
-    <svg onclick="window.location='home.html';" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="white"/></svg>
-    <span class="navbar-brand mb-0 h1">Modifier</span>
-</header>
-
-<body onload="remplirChampsaModifier('date')">
-    <div id="form-event" class="card-fade">
-        <div class="cardForm-dialog">
-            <div class="cardForm-content">
-                <form id="target">
-                    <div id="ipAlertTitle" class="alert alert-danger hide" role="alert">
-                        Title and Start should not be Empty
-                    </div>
-                    <div id="ipTitle-group" class="form-group">
-                        <label for="ipTitle">Title : </label>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Calendrier | JavaScript</title>
+        <link rel="stylesheet" href="css/all.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/MD.forms.css">
+    </head>
+    <header class="navbar navbar-dark bg-primary">
+        <!-- Bouton retour en SVG inline -->
+        <svg onclick="window.location='home.html';" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="white"/></svg>
+        <span class="navbar-brand mb-0 h1">Modifier</span>
+    </header>
+    <body onload="remplirChampsaModifier('date')">
+        <div id="form-event" class="card-fade">
+            <div class="cardForm-dialog">
+                <div class="cardForm-content">
+                    <form id="target">
+                        <div id="ipTittle-group" class="md-form-group">
+                            <input type="text" class="md-form-control" id="ipTitle">
+                            <label for="ipTitle" class="md-form-label">Titre*</label>
+                            <div class="md-form-helper">*Requis</div>
+                        </div>
+                        <div id="ipStart-group" class="md-form-group">
+                            <input type="date" class="md-form-control" id="ipDebut">
+                            <label for="ipDebut" class="md-form-label">Date début*</label>
+                            <div class="md-form-helper">*Requis</div>
+                        </div>
+                        <div id="ipEnd-group" class="md-form-group">
+                            <input type="date" class="md-form-control" id="ipEnd">
+                            <label for="ipEnd" class="md-form-label">Date fin</label>
+                        </div>
+                        <div id="idEnd-group" class="md-form-group">
+                            <textarea class="md-form-control" rows="3" id="ipDesc"></textarea>
+                            <label for="ipDesc" class="md-form-label">Description</label>
+                        </div>
                         <input type="hidden" class="form-control" id="ipId" value="">
-                        <input type="text" class="form-control" id="ipTitle" placeholder="Title" value="">
-                    </div>
-                    <div id="ipAlertStartEnd" class="alert alert-danger d-none" role="alert">
-                        Start DateTime should be earlier than End DateTime
-                    </div>
-                    <div id="ipStart-group" class="form-group">
-                        <label for="ipStart">Start Date : </label>
-                        <input type="date" class="form-control" id="ipStart" data-field="date" placeholder="Start"
-                            value="">
-                    </div>
-                    <div id="ipEnd-group" class="form-group">
-                        <label for="ipStart">End Date : </label>
-                        <input type="date" class="form-control" id="ipEnd" data-field="date" placeholder="End" value="">
-                    </div>
-                    <div id="ipDesc-group" class="form-group">
-                        <label for="ipDesc">Description : </label>
-                        <textarea class="form-control" rows="3" id="ipDesc" placeholder="Description"></textarea>
-                    </div>
-                    <div class="flex-container">
-                        <div>
-                            <button id="supprimer" type="button" class="btn btn-outline-danger form-btn" onclick="supprimerDeadline()">Supprimer</button>
+                        <div class="flex-container">
+                            <div>
+                                <button id="supprimer" type="button" class="btn btn-outline-danger form-btn" onclick="supprimerDeadline()">Supprimer</button>
+                            </div>
+                            <div>
+                                <button id="modifier" type="button" class="btn btn-outline-secondary form-btn" onclick="modifierDeadline()">Modifier</button>
+                            </div>
                         </div>
-                        <div>
-                            <button id="modifier" type="button" class="btn btn-outline-secondary form-btn" onclick="modifierDeadline()">Modifier</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/events.js"></script>
-    <script src="js/date_get.js"></script>
-    <script src="js/modSupDeadline.js"></script>
-</body>
-
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/script.js"></script>
+        <script src="js/events.js"></script>
+        <script src="js/date_get.js"></script>
+        <script src="js/modSupDeadline.js"></script>
+        <script src="js/MD.forms.js"></script>
+    </body>
 </html>

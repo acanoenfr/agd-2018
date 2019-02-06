@@ -16,7 +16,7 @@ header.navbar {
     justify-content: flex-start;
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.04), 0 1px 10px 0 rgba(0,0,0,0.02), 0 2px 4px -1px rgba(0,0,0,0.10);
 }
-#form-event{ margin-top: 100px; }
+#form-event{ margin-top: 64px; }
 header.navbar.bg-primary { background-color: #F44336!important; }
 
 .container-fluid { margin-top: 56px; z-index: 1; }
@@ -210,8 +210,7 @@ button.cd-btn:focus {
 }
 
 #target{
-    margin-top: 55px; margin-bottom: 80px;
-    margin-left: 8px; margin-right: 8px;
+    margin: 55px 16px 80px 16px;
 }
 
 #ipAlertTitle{ margin-top: 10%; }

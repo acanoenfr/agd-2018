@@ -1,3 +1,32 @@
+$("#ipTitle").keyup(function() {
+    // Si il y a quelque chose dedans
+    if ($(this).val()) {
+        $(this).css("borderColor", ""); // Couleur de bordure par défaut
+        $(this).css("borderWidth", ""); // Taille de bordure par défaut
+        $(this).parent().find(".md-form-label").css("color", ""); // Label en couleur par défaut
+        $(this).parent().find(".md-form-helper").css("color", ""); // Couleur du helper text par défaut
+    } else { // Sinon
+        $(this).css("borderColor", "#B00020"); // Couleur de bordure rouge
+        $(this).css("borderWidth", "2px"); // Taille de bordure à 2px (au lieu de 1px par défaut)
+        $(this).parent().find(".md-form-label").css("color", "#B00020"); // Label en rouge
+        $(this).parent().find(".md-form-helper").css("color", "#B00020"); // Couleur du helper text rouge
+    }
+});
+
+$("#ipDebut").keyup(function() {
+    if ($(this).val()) {
+        $(this).css("borderColor", ""); // Couleur de bordure par défaut
+        $(this).css("borderWidth", ""); // Taille de bordure par défaut
+        $(this).parent().find(".md-form-label").css("color", ""); // Label en couleur par défaut
+        $(this).parent().find(".md-form-helper").css("color", ""); // Couleur du helper text par défaut
+    } else { // Sinon
+        $(this).css("borderColor", "#B00020"); // Couleur de bordure rouge
+        $(this).css("borderWidth", "2px"); // Taille de bordure à 2px (au lieu de 1px par défaut)
+        $(this).parent().find(".md-form-label").css("color", "#B00020"); // Label en rouge
+        $(this).parent().find(".md-form-helper").css("color", "#B00020"); // Couleur du helper text rouge
+    }
+});
+
 function remplirChampsaModifier(dateGet) {
     dateGet = dateGet.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + dateGet + "=([^&#]*)"),
@@ -90,8 +119,18 @@ function modifierDeadline() {
     let ipEnd = dateEnd.replace(/\b0/g, '');
     let ipContent = $("#ipDesc").val();
     if (ipTitle == "" || dateStart == "" || ipTitle == null || dateStart == null) {
-        $("#ipAlertTitle").removeClass("d-none");
-        
+        if (ipTitle == "" || ipTitle == null) {
+            $("#ipTitle").css("borderColor", "#B00020");
+            $("#ipTitle").css("borderWidth", "2px");
+            $("#ipTitle").parent().find(".md-form-label").css("color", "#B00020");
+            $("#ipTitle").parent().find(".md-form-helper").css("color", "#B00020");
+        }
+        if (dateStart == "" || dateStart = null) {
+            $("#ipDebut").css("borderColor", "#B00020");
+            $("#ipDebut").css("borderWidth", "2px");
+            $("#ipDebut").parent().find(".md-form-label").css("color", "#B00020");
+            $("#ipDebut").parent().find(".md-form-helper").css("color", "#B00020"); 
+        }
     } else {
         var c = confirm("Êtes-vous sûr de modifier le Deadline? ");
         if (c) {
