@@ -4,13 +4,13 @@ function afficherHistorique() {
     var month = today.getMonth()+1;
     var year = today.getFullYear();
     var datesStart=[];
-    var todayDate= ("".concat(year,"-",month,"-",day));
+    var todayDate= formatDate("".concat(year,"-",month,"-",day));
     let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
     db.transaction(function (tx) {
-        tx.executeSql('Select * from events where start<?', [todayDate], function (tx, result) {
+        tx.executeSql('Select * from events where start<=?', [todayDate], function (tx, result) {
             for(let i=0; i<result.rows.length; i++){                      
                 datesStart.push(result.rows[i]);
-                datesStart[i].start=formatDate(result.rows[i].start);
+              //  datesStart[i].start=formatDate(result.rows[i].start);
                 datesStart.sort(function(a,b){
                     if(a.start<b.start){
                         return -1;
@@ -21,9 +21,9 @@ function afficherHistorique() {
                     return 0;
                 })
             }                               
-        $("#body").append('<table class="modal-dialog"><thead><tr class="modal-dialog"><td class="modal-dialog"><h6>Titre</h6></td><td><h6>Description</h6></td><td><h6>Début</h6></td><td><h6>Fin</h6></td></tr></thead><tbody>'); 
+        $("#body").append('<table class="modal-dialog"><thead><tr class="modal-dialog data"><td class="modal-dialog"><h6>Titre</h6></td><td><h6>Description</h6></td><td><h6>Début</h6></td><td><h6>Fin</h6></td></tr></thead><tbody>'); 
         for (let i = 0; i<datesStart.length; i++) { 
-                $("table").append("<tr class='modal-body'><td class='modal-body'>"+datesStart[i].title+"</td><td>"+datesStart[i].content+"</td><td>"+formatDateDdMmAa(datesStart[i].start)+"</td><td>"+formatDateDdMmAa(datesStart[i].end)+"</td></tr>")              
+                $("table").append("<tr class='modal-body data'><td class='modal-body'>"+datesStart[i].title+"</td><td>"+datesStart[i].content+"</td><td>"+formatDateDdMmAa(datesStart[i].start)+"</td><td>"+formatDateDdMmAa(datesStart[i].end)+"</td></tr>")              
              }
              $("#body").append('</tbody></table>');
         });
