@@ -74,21 +74,18 @@ let app = {
             })
         }
         // Send notification function
-        function sendNotif(mail, name, start, , color, content = null, end = null) {
-            let color = "#0000ff"
+        function sendNotif(mail, name, start, color = "#0000ff", content = null, end = null) {
             let type = (color === "#0000ff") ? "fixe" : "floue"
             type = `<font color="${color}">${type}</font>`
             content = (content !== null) ? content : "Aucun contenu"
             name = `<strong>${name}</strong>`
-            let startFormat = setDateFormat(start)
-            let endFormat = setDateFormat(end)
             Email.send({
                 SecureToken: "d7247933-70fc-46ae-a046-8c086c06bf07",
                 To: mail,
                 From: "AGD 2018 <team.agd.2018@gmail.com>",
                 Subject: "[Notification] MyDeadlines",
                 Body: `Bonjour,<br>
-Nous vous rappelons que vous avez une deadline ${type} (${name} : ${content}) à la date du ${startFormat}.<br>
+Nous vous rappelons que vous avez une deadline ${type} (${name} : ${content}) à la date du ${start.toDateString()}.<br>
 Cordialement,<br>
 AGD-2018`
             }).then(message => console.info(message))
@@ -123,11 +120,11 @@ AGD-2018`
                     let twoWeeks = subDays((new Date(events[i].start)), 14)
                     let oneDay = subDays((new Date(events[i].start)), 1)
                     setTimeout(function () {
-                        sendNotif("vgjulienot@gmail.com", events[i].name, events[i].start, events[i].content)
-                    }, twoWeeks - now)
+                        sendNotif("team.agd.2018@gmail.com", events[i].name, events[i].start, events[i].color, events[i].content)
+                    }, (twoWeeks + 3600 * 12) - now)
                     setTimeout(function () {
-                        sendNotif("vgjulienot@gmail.com", events[i].name, events[i].start, events[i].content)
-                    }, oneDay - now)
+                        sendNotif("team.agd.2018@gmail.com", events[i].name, events[i].start, events[i].color, events[i].content)
+                    }, (oneDay + 3600 * 12) - now)
                 }
             })
         })
