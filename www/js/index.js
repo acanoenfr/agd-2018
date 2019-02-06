@@ -112,7 +112,7 @@ AGD-2018`
             return (new Date(dt.setDate(dt.getDate() - n))).getTime()
         }
 
-        /*myDB.transaction(function (txn) {
+        myDB.transaction(function (txn) {
             txn.executeSql("SELECT * FROM events", [], function (tx, res) {
                 let events = res.rows
                 for (let i = 0; i < events.length; i++) {
@@ -127,7 +127,7 @@ AGD-2018`
                     }, (oneDay + 3600 * 12) - now)
                 }
             })
-        })*/
+        })
     }
 }
 
