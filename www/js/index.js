@@ -120,8 +120,8 @@ AGD-2018`
                 let events = res.rows
                 for (let i = 0; i < events.length; i++) {
                     let now = Date.now()
-                    let twoWeeks = subDays((new Date(events[i].start)).getTime(), 14);
-                    let oneDay = subDays((new Date(events[i].start)).getTime(), 1);
+                    let twoWeeks = subDays((new Date(events[i].start)), 14)
+                    let oneDay = subDays((new Date(events[i].start)), 1)
                     setTimeout(function () {
                         sendNotif("contact@acanoen.fr", events[i].name, events[i].start, events[i].content)
                     }, twoWeeks - now)
