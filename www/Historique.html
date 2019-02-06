@@ -3,29 +3,26 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Deadline</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <link rel="stylesheet" href="css/all.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     </head>
-    <body class="body">
+    <body onload="afficherHistorique()">
         <header class="navbar navbar-dark bg-primary">
             <!-- Bouton retour en SVG inline -->
             <svg onclick="window.location='home.html';" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="white"/></svg>
-            <span class="navbar-brand mb-0 h1">Liste</span>
+            <span class="navbar-brand mb-0 h1">Historique</span>
         </header>
-        <div id="form-event" class="card-fade">
-            <h5 class="list-title">Il y a plusieurs deadlines pour ce jour</h5>
-        	<div id="list">
-                <!-- Les éléments de la date choisie s'afficheront ici -->
-        	</div>
+        <div id="body" class="container-fluid" >
+            <h5>Deadlines Passées</h5>
         </div>
         <script src="js/jquery.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/script.js"></script>
-        <script src="js/events.js"></script>
-        <script src="js/date_get.js"></script>
-        <script src="js/list.js"></script>
+        <script src="js/materialize.min.js"></script>
+        <script src="js/historique.js"></script>
     </body>
 </html>

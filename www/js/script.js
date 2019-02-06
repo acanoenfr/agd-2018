@@ -18,6 +18,7 @@ const months = [
 ]
 
 let monthAndYear = document.getElementById("monthAndYear")
+let tempMonth
 
 const showCalendar = (month, year) => {
     let firstDay = (new Date(year, month)).getDay()
@@ -46,7 +47,8 @@ const showCalendar = (month, year) => {
                     cell.classList.add("bg-primary")
                 }
                 cell.appendChild(cellText)
-                cell.setAttribute("id", `${year}-${month + 1}-${date}`)
+                tempMonth = month + 1
+                cell.setAttribute("id", `${year}-${addZero(tempMonth)}-${addZero(date)}`)
                 row.appendChild(cell)
                 date++
             }
@@ -65,4 +67,12 @@ const next = () => {
     currentYear = currentMonth === 11 ? currentYear + 1 : currentYear
     currentMonth = (currentMonth + 1) % 12
     showCalendar(currentMonth, currentYear)
+}
+
+// Add zeros if integer is inferior to 10
+function addZero(int) {
+    if (int < 10) {
+        return `0${int}`
+    }
+    return `${int}`
 }

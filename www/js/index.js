@@ -9,11 +9,9 @@ let app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function () {
-        let mail = ""
         let myDB = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000)
         myDB.transaction(function (txn) {
-            txn.executeSql("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT, start TEXT NOT NULL, end TEXT)")
-            // txn.executeSql(`INSERT INTO events(title, color, start, end) VALUES(?, ?, ?, ?)`, ['Rattrapage TP SQL', '#ff0000', '2019-2-14', '2019-2-28'])
+            txn.executeSql("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT, start DATE NOT NULL, end DATE)")
         })
         showCalendar(currentMonth, currentYear)
         showEvents()
@@ -37,16 +35,16 @@ let app = {
                             let elementEnd = document.getElementById(events[i].end)
                             if (!events[i].end) {
                                 txn.executeSql("SELECT COUNT(*) AS number FROM events WHERE start = ?", [events[i].start], function (tx2, res2) {
-                                    elementStart.setAttribute('class', 'event');
-                                    let icon = document.createElement('span');
-                                    icon.setAttribute('style', `color: white; font-size: 1rem; background-color: blue; width: 1.6rem; border-radius: 25%;`);
-                                    icon.innerHTML = res2.rows[0].number;
-                                    elementStart.appendChild(icon);
+                                    elementStart.setAttribute('class', 'event')
+                                    let icon = document.createElement('span')
+                                    icon.setAttribute('style', `color: white; font-size: 1rem; background-color: blue; width: 1.6rem; border-radius: 25%;`)
+                                    icon.innerHTML = res2.rows[0].number
+                                    elementStart.appendChild(icon)
                                 })
 
                                 elementStart.addEventListener('click', function () {
-                                    laDateGet = elementStart.id;
-                                    window.location.assign("processDate.html?date=" + laDateGet);
+                                    laDateGet = elementStart.id
+                                    window.location.assign("processDate.html?date=" + laDateGet)
                                 })
                             } else {
                                 elementStart.setAttribute('class', 'event')
@@ -60,12 +58,12 @@ let app = {
                                 icon2.setAttribute('style', `color: red; font-size: 1rem;`)
                                 elementEnd.appendChild(icon2)
                                 elementStart.addEventListener('click', function () {
-                                    laDateGet = elementStart.id;
-                                    window.location.assign("modSupDeadline.html?date=" + laDateGet);
+                                    laDateGet = elementStart.id
+                                    window.location.assign("processDate.html?date=" + laDateGet)
                                 })
                                 elementEnd.addEventListener('click', function () {
-                                    laDateGet = elementStart.id;
-                                    window.location.assign("modSupDeadline.html?date=" + laDateGet);
+                                    laDateGet = elementStart.id
+                                    window.location.assign("processDate.html?date=" + laDateGet)
                                 })
                             }
                         }
@@ -75,19 +73,64 @@ let app = {
                 })
             })
         }
-        function sendEmail(mail) {
+        // Send notification function
+        function sendNotif(mail, name, start, content = null, end = null) {
+            let color = "#0000ff"
+            let type = (color === "#0000ff") ? "fixe" : "floue"
+            type = `<font color="${color}">${type}</font>`
+            content = (content !== null) ? content : "Aucun contenu"
+            name = `<strong>${name}</strong>`
+            let startFormat = setDateFormat(start)
+            let endFormat = setDateFormat(end)
             Email.send({
                 SecureToken: "d7247933-70fc-46ae-a046-8c086c06bf07",
                 To: mail,
                 From: "AGD 2018 <team.agd.2018@gmail.com>",
                 Subject: "[Notification] MyDeadlines",
                 Body: `Bonjour,<br>
-Nous vous rappelons que vous avez une deadline <font color="#0000ff">fixe</font> (<strong>Stages LP DIM</strong> : Début des stages) à la date du <em>01 avril 2019</em>.<br>
+Nous vous rappelons que vous avez une deadline ${type} (${name} : ${content}) à la date du ${startFormat}.<br>
 Cordialement,<br>
 AGD-2018`
             }).then(message => console.info(message))
         }
-        setTimeout(sendEmail(mail), Date.now() + 5000 - Date.now())
+
+        // Set date format function
+        function setDateFormat(date) {
+            if (date !== null) {
+                date = date.split("-")
+                return `<em>${addZero(date[2])}/${addZero(date[1])}/${date[0]}</em>`
+            }
+            return null
+        }
+
+        // Add zeros if integer is inferior to 10
+        function addZero(int) {
+            if (int < 10) {
+                return `0${int}`
+            }
+            return `${int}`
+        }
+        
+        function subDays(dt, n) {
+            return (new Date(dt.setDate(dt.getDate() - n))).getTime()
+        }
+
+        myDB.transaction(function (txn) {
+            myDB.executeSql("SELECT * FROM events", [], function (tx, res) {
+                let events = res.rows
+                for (let i = 0; i < events.length; i++) {
+                    let now = Date.now()
+                    let twoWeeks = subDays((new Date(events[i].start)).getTime(), 14);
+                    let oneDay = subDays((new Date(events[i].start)).getTime(), 1);
+                    setTimeout(function () {
+                        sendNotif("contact@acanoen.fr", events[i].name, events[i].start, events[i].content)
+                    }, twoWeeks - now)
+                    setTimeout(function () {
+                        sendNotif("contact@acanoen.fr", events[i].name, events[i].start, events[i].content)
+                    }, oneDay - now)
+                }
+            })
+        })
     }
 }
 
