@@ -1,3 +1,7 @@
+body, html {
+    background-color: #fafafa;
+}
+
 /****************************/
 /** Style du header/navbar **/
 /****************************/
@@ -10,9 +14,9 @@ header.navbar {
     width: 100%; height: 56px;
     z-index: 2;
     justify-content: flex-start;
-    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20);
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.04), 0 1px 10px 0 rgba(0,0,0,0.02), 0 2px 4px -1px rgba(0,0,0,0.10);
 }
-#form-event{ margin-top: 100px; }
+#form-event{ margin-top: 64px; }
 header.navbar.bg-primary { background-color: #F44336!important; }
 
 .container-fluid { margin-top: 56px; z-index: 1; }
@@ -25,6 +29,37 @@ header.navbar.bg-primary { background-color: #F44336!important; }
 
 .navbar-icon { fill: white; }
 
+
+
+
+footer.navbar {
+    background-color: white;
+    height: 56px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 -4px 5px 0 rgba(0,0,0,0.04), 0 -1px 10px 0 rgba(0,0,0,0.02), 0 -2px 4px -1px rgba(0,0,0,0.10);
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+}
+
+footer.navbar > .navbar-btn {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    color: #F44336;
+    justify-content: center;
+    height: 100%;
+}
+
+footer.navbar > .navbar-btn.current {
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
 
 /****************************/
 /* Style de la page d'intro */
@@ -54,26 +89,43 @@ header.navbar.bg-primary { background-color: #F44336!important; }
 /* Calendrier */
 
 .container-fluid {
-    padding-top: 5rem;
-    padding-left: 8px; padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 56px;
+    padding-left: 0; padding-right: 0;
 }
 
 td.bg-primary {
     background-color: #36E7F4!important;
+    border-radius: 60px;
 }
 
 td { width: 5%; }
 
 .table th { padding-left: 10px; padding-right: 10px; }
 
-.card { font-size: 14px; }
+.card {
+    font-size: 14px;
+    border-style: none;
+    background-color: #fafafa;
+    box-shadow: none;
+    margin: 0;
+}
+
+.table-bordered, .table tr, .table thead th, .table-bordered td, .table-bordered th {
+    border-style: none;
+}
+
+.table thead th, .table tbody td {
+    text-align: center;
+}
 
 
 /* Header du calendrier */
 
-.cd-btn-form {
-    position: absolute; right: 0;
-    margin-right: 8px;
+.form-inline {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
 }
 
 button.cd-btn {
@@ -81,21 +133,18 @@ button.cd-btn {
     font-size: 1.2em;
     height: 34px; width: 34px;
 }
-.form-inline {
-    background-color: rgba(0,0,0,.03);
-    border-bottom: 1px solid rgba(0,0,0,.125);
+
+button.cd-btn:focus {
+    outline: none;
 }
+
 .card-header {
-    background-color: rgba(0, 0, 0, 0);
-    border-bottom: 1px solid rgba(0, 0, 0, 0);
     padding-left: 16px;
+    background: none;
+    border-style: none;
 }
 
 .flex-container{ display: flex; justify-content: space-between; }
-
-.cd-btn-form {
-    margin-right: 16px;
-}
 
 /* Boutons en dessous du calendrier */
 
@@ -123,6 +172,13 @@ button.cd-btn {
     transition-timing-function: ease-in-out;
     transition-duration: .2s;
 }
+
+.btn-submit.onhome {
+    margin-bottom: 72px;
+    width: 48px;
+    padding-right: 12px;
+}
+
 .btn-submit:active {
     background-color: #C62828;
     box-shadow: 0 12px 17px 2px rgba(0,0,0,0.14), 0 5px 22px 4px rgba(0,0,0,0.12), 0 7px 8px -4px rgba(0,0,0,0.20);
@@ -154,8 +210,7 @@ button.cd-btn {
 }
 
 #target{
-    margin-top: 55px; margin-bottom: 80px;
-    margin-left: 8px; margin-right: 8px;
+    margin: 55px 16px 80px 16px;
 }
 
 #ipAlertTitle{ margin-top: 10%; }

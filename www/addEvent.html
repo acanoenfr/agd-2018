@@ -5,10 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Calendrier | JavaScript</title>
-		
         <link rel="stylesheet" href="css/jquery-ui.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/MD.forms.css">
     </head>
     <header class="navbar navbar-dark bg-primary">
         <!-- Bouton retour en SVG inline -->
@@ -22,23 +22,25 @@
             <div class="cardForm-dialog">
                 <div class="cardForm-content">
                     <form id="target"> 
-                        <div id="ipTittle-group" class="form-group">
-                            <label for="ipTitle">Titre : </label>
-                            <input type="text" class="form-control" id="ipTitle" onkeyup="checkTitre();">
+                        <div id="ipTittle-group" class="md-form-group">
+                            <input type="text" class="md-form-control" id="ipTitle">
+                            <label for="ipTitle" class="md-form-label">Titre*</label>
+                            <div class="md-form-helper">*Requis</div>
                         </div>
-                        <div id="ipStart-group" class="form-group">
-                            <label for="ipDebut">Date Début : </label>
-                            <input type="date" class="form-control" id="ipDebut">
+                        <div id="ipStart-group" class="md-form-group">
+                            <input type="date" class="md-form-control" id="ipDebut">
+                            <label for="ipDebut" class="md-form-label">Date début*</label>
+                            <div class="md-form-helper">*Requis</div>
                         </div>
-                        <div id="ipEnd-group" class="form-group">
-                            <label for="ipEnd">Date Fin : </label>
-                            <input type="date" class="form-control" id="ipEnd">
+                        <div id="ipEnd-group" class="md-form-group">
+                            <input type="date" class="md-form-control" id="ipEnd">
+                            <label for="ipEnd" class="md-form-label">Date fin</label>
                         </div>
-                        <div id="idEnd-group" class="form-group">
-                            <label for="ipDesc">Description: </label>
-                            <textarea class="form-control" rows="3" id="ipDesc"></textarea>
+                        <div id="idEnd-group" class="md-form-group">
+                            <textarea class="md-form-control" rows="3" id="ipDesc"></textarea>
+                            <label for="ipDesc" class="md-form-label">Description</label>
                         </div>
-                        <button  type="button" class="btn-submit" id="buttonSoum" onclick="recupText()">
+                        <button  type="button" class="btn-submit" id="buttonSoum">
                             <svg class="plus-btn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="white"/></svg>
                             <div class="btn-submit-label">Ajouter</div>
                         </button>
@@ -54,5 +56,6 @@
         <script src="js/events.js"></script>
         <script src="js/index.js"></script>
         <script src="js/addEvent.js"></script>
+        <script src="js/MD.forms.js"></script>
     </body>
 </html>
