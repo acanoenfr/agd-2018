@@ -90,11 +90,13 @@ footer.navbar > .navbar-btn.current {
 
 .container-fluid {
     padding-top: 8px;
+    padding-bottom: 56px;
     padding-left: 0; padding-right: 0;
 }
 
 td.bg-primary {
     background-color: #36E7F4!important;
+    border-radius: 60px;
 }
 
 td { width: 5%; }
@@ -105,9 +107,10 @@ td { width: 5%; }
     font-size: 14px;
     border-style: none;
     background-color: #fafafa;
+    box-shadow: none;
 }
 
-.table-bordered, .table thead th, .table-bordered td, .table-bordered th {
+.table-bordered, .table tr, .table thead th, .table-bordered td, .table-bordered th {
     border-style: none;
 }
 
