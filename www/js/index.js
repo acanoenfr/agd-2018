@@ -74,7 +74,7 @@ let app = {
             })
         }
         // Send notification function
-        function sendNotif(mail, name, start, content = null, end = null) {
+        function sendNotif(mail, name, start, , color, content = null, end = null) {
             let color = "#0000ff"
             let type = (color === "#0000ff") ? "fixe" : "floue"
             type = `<font color="${color}">${type}</font>`
@@ -123,10 +123,10 @@ AGD-2018`
                     let twoWeeks = subDays((new Date(events[i].start)), 14)
                     let oneDay = subDays((new Date(events[i].start)), 1)
                     setTimeout(function () {
-                        sendNotif("contact@acanoen.fr", events[i].name, events[i].start, events[i].content)
+                        sendNotif("lineproex@gmail.com", events[i].name, events[i].start, events[i].content)
                     }, twoWeeks - now)
                     setTimeout(function () {
-                        sendNotif("contact@acanoen.fr", events[i].name, events[i].start, events[i].content)
+                        sendNotif("lineproex@gmail.com", events[i].name, events[i].start, events[i].content)
                     }, oneDay - now)
                 }
             })
