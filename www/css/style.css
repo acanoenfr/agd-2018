@@ -20,8 +20,8 @@ header.navbar {
 header.navbar.bg-primary { background-color: #F44336!important; }
 
 .container-fluid { margin-top: 56px; z-index: 1; }
-
-.navbar-brand { font-size: 1rem; margin-left: 16px; padding-top: 4px; }
+    
+.navbar-brand { font-size: 20px; margin-left: 16px; line-height: 56px; margin-bottom: 2px!important;}
 .navbar-brand.home { margin-left: 0px; }
 
 
@@ -185,7 +185,7 @@ button.cd-btn:focus {
 }
 .btn-submit:focus { outline: none; }
 
-.plus-btn { margin-bottom: 2px; }
+.plus-btn { margin-bottom: 1px; }
 
 .btn-submit-label {
     font-size: 0.9375rem;
