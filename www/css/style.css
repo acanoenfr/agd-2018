@@ -43,6 +43,7 @@ footer.navbar {
     display: flex;
     justify-content: space-around;
     padding: 0;
+    transition: all 0.2s;
 }
 
 footer.navbar > .navbar-btn {
@@ -54,11 +55,54 @@ footer.navbar > .navbar-btn {
     color: #F44336;
     justify-content: center;
     height: 100%;
+    transition: all 0.2s;
+}
+
+@keyframes svg-up {
+    0% { top: 16px; }
+    100% { top: 5px; }
+}
+
+@keyframes svg-down {
+    0% { top: 5px; }
+    100% { top: 16px; }
+}
+
+.svg-up {
+    animation: svg-up 0.2s ease;
+}
+
+.svg-down {
+    animation: svg-down 0.2s ease;
+}
+
+.navbar-btn > svg {
+    position: absolute;
+}
+
+.navbar-btn.current > svg {
+    top: 5px;
+    transition: all 0.2s;
 }
 
 footer.navbar > .navbar-btn.current {
     margin-top: 8px;
     margin-bottom: 12px;
+    transition: all 0.2s;
+}
+
+.navbar-btn  > span {
+    opacity: 0;
+    position: absolute;
+    bottom: -3px;
+    transition: all 0.2s;
+}
+
+.navbar-btn.current  > span {
+    opacity: 1;
+    visibility: visible;
+    bottom: 9px;
+    transition: all 0.2s;
 }
 
 /****************************/
