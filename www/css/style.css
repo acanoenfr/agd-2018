@@ -1,5 +1,7 @@
 body, html {
     background-color: #fafafa;
+    width: 100%;
+    height: 100%;
 }
 
 /****************************/
@@ -21,7 +23,7 @@ header.navbar.bg-primary { background-color: #F44336!important; }
 
 .container-fluid { margin-top: 56px; z-index: 1; }
     
-.navbar-brand { font-size: 20px; margin-left: 16px; line-height: 56px; margin-bottom: 2px!important;}
+.navbar-brand { font-size: 20px; margin-left: 16px; margin-bottom: 2px!important;}
 .navbar-brand.home { margin-left: 0px; }
 
 
@@ -30,7 +32,7 @@ header.navbar.bg-primary { background-color: #F44336!important; }
 .navbar-icon { fill: white; }
 
 
-
+/* Barre de navigation en bas de l'écran */
 
 footer.navbar {
     background-color: white;
@@ -78,6 +80,7 @@ footer.navbar > .navbar-btn {
 
 .navbar-btn > svg {
     position: absolute;
+    top: 16px;
 }
 
 .navbar-btn.current > svg {
@@ -104,6 +107,7 @@ footer.navbar > .navbar-btn.current {
     bottom: 9px;
     transition: all 0.2s;
 }
+
 
 /****************************/
 /* Style de la page d'intro */
@@ -193,6 +197,8 @@ button.cd-btn:focus {
 /* Boutons en dessous du calendrier */
 
 .flex-container.home { margin-top: 8px; }
+
+.body { padding-bottom: 80px; }
 
 
 /*****************************/

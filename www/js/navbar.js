@@ -16,6 +16,8 @@ accueilbtn.click(function() {
 	accueilbtn.addClass("current");
 	$("#nav-accueil svg").removeClass("svg-down");
 	$("#nav-accueil svg").addClass("svg-up");
+
+	document.getElementById("content").src = "calendar.html";
 });
 
 historiquebtn.click(function() {
@@ -33,7 +35,7 @@ historiquebtn.click(function() {
 	$("#nav-historique svg").removeClass("svg-down");
 	$("#nav-historique svg").addClass("svg-up");
 
-	window.location = "Historique.html";
+	document.getElementById("content").src = "Historique.html";
 });
 
 exporterbtn.click(function() {
@@ -50,4 +52,6 @@ exporterbtn.click(function() {
 	exporterbtn.addClass("current");
 	$("#nav-exporter svg").removeClass("svg-down");
 	$("#nav-exporter svg").addClass("svg-up");
+
+	document.getElementById("content").src = "exportCSV.html";
 });
