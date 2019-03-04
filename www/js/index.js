@@ -119,12 +119,12 @@ AGD-2018`
                     let now = Date.now()
                     let twoWeeks = subDays((new Date(events[i].start)), 14)
                     let oneDay = subDays((new Date(events[i].start)), 1)
-                    setTimeout(function () {
-                        sendNotif("team.agd.2018@gmail.com", events[i].name, events[i].start, events[i].color, events[i].content)
-                    }, (twoWeeks + 3600 * 12) - now)
-                    setTimeout(function () {
-                        sendNotif("team.agd.2018@gmail.com", events[i].name, events[i].start, events[i].color, events[i].content)
-                    }, (oneDay + 3600 * 12) - now)
+                    // setTimeout(function () {
+                    //    sendNotif("team.agd.2018@gmail.com", events[i].name, events[i].start, events[i].color, events[i].content)
+                    // }, (twoWeeks + 3600 * 12) - now)
+                    // setTimeout(function () {
+                    //     sendNotif("team.agd.2018@gmail.com", events[i].name, events[i].start, events[i].color, events[i].content)
+                    // }, (oneDay + 3600 * 12) - now)
                 }
             })
         })
