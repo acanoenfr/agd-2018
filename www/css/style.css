@@ -53,7 +53,7 @@ footer.navbar {
 }
 
 footer.navbar > .navbar-btn {
-    width: 30%;
+    width: 33.333%;
     display: flex;
     flex-direction: column;
     align-items: center;
