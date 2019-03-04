@@ -4,6 +4,10 @@ body, html {
     height: 100%;
 }
 
+.container-fluid {
+    padding-bottom: 56px;
+}
+
 /****************************/
 /** Style du header/navbar **/
 /****************************/
@@ -21,7 +25,7 @@ header.navbar {
 #form-event{ margin-top: 64px; }
 header.navbar.bg-primary { background-color: #F44336!important; }
 
-.container-fluid { margin-top: 56px; z-index: 1; }
+.container-fluid { padding-top: 64px; z-index: 1; }
     
 .navbar-brand { font-size: 20px; margin-left: 16px; margin-bottom: 2px!important;}
 .navbar-brand.home { margin-left: 0px; }
@@ -137,8 +141,8 @@ footer.navbar > .navbar-btn.current {
 /* Calendrier */
 
 .container-fluid {
-    padding-top: 8px;
-    padding-bottom: 56px;
+    /*padding-top: 8px;*/
+    /*padding-bottom: 56px;*/   
     padding-left: 0; padding-right: 0;
 }
 
