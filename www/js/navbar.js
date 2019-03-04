@@ -17,7 +17,8 @@ accueilbtn.click(function() {
 	$("#nav-accueil svg").removeClass("svg-down");
 	$("#nav-accueil svg").addClass("svg-up");
 
-	document.getElementById("content").src = "calendar.html";
+	// document.getElementById("content").src = "calendar.html";
+	window.location = "home.html";
 });
 
 historiquebtn.click(function() {
@@ -35,7 +36,8 @@ historiquebtn.click(function() {
 	$("#nav-historique svg").removeClass("svg-down");
 	$("#nav-historique svg").addClass("svg-up");
 
-	document.getElementById("content").src = "Historique.html";
+	// document.getElementById("content").src = "Historique.html";
+	window.location = "Historique.html";
 });
 
 exporterbtn.click(function() {
@@ -53,5 +55,6 @@ exporterbtn.click(function() {
 	$("#nav-exporter svg").removeClass("svg-down");
 	$("#nav-exporter svg").addClass("svg-up");
 
-	document.getElementById("content").src = "exportCSV.html";
+	// document.getElementById("content").src = "exportCSV.html";
+	window.location = "exportCSV.html";
 });
