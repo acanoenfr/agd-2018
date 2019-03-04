@@ -122,7 +122,7 @@ function modifierDeadline() {
             $("#ipTitle").parent().find(".md-form-label").css("color", "#B00020");
             $("#ipTitle").parent().find(".md-form-helper").css("color", "#B00020");
         }
-        if (dateStart == "" || dateStart = null) {
+        if (dateStart = null) {
             $("#ipDebut").css("borderColor", "#B00020");
             $("#ipDebut").css("borderWidth", "2px");
             $("#ipDebut").parent().find(".md-form-label").css("color", "#B00020");

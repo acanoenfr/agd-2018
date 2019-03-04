@@ -3,36 +3,58 @@ var historiquebtn = $("#nav-historique");
 var exporterbtn = $("#nav-exporter");
 
 accueilbtn.click(function() {
-	$("#nav-historique span").text("");
 	historiquebtn.removeClass("current");
+	if($("#nav-historique svg").hasClass("svg-up"))
+		$("#nav-historique svg").addClass("svg-down");
+	$("#nav-historique svg").removeClass("svg-up");
 
-	$("#nav-exporter span").text("");
 	exporterbtn.removeClass("current");
+	if($("#nav-exporter svg").hasClass("svg-up"))
+		$("#nav-exporter svg").addClass("svg-down");
+	$("#nav-exporter svg").removeClass("svg-up");
 
-	$("#nav-accueil span").text("Accueil");
 	accueilbtn.addClass("current");
+	$("#nav-accueil svg").removeClass("svg-down");
+	$("#nav-accueil svg").addClass("svg-up");
+
+	// document.getElementById("content").src = "calendar.html";
+	window.location = "home.html";
 });
 
 historiquebtn.click(function() {
-	$("#nav-accueil span").text("");
 	accueilbtn.removeClass("current");
+	if($("#nav-accueil svg").hasClass("svg-up"))
+		$("#nav-accueil svg").addClass("svg-down");
+	$("#nav-accueil svg").removeClass("svg-up");
 
-	$("#nav-exporter span").text("");
 	exporterbtn.removeClass("current");
+	if($("#nav-exporter svg").hasClass("svg-up"))
+		$("#nav-exporter svg").addClass("svg-down");
+	$("#nav-exporter svg").removeClass("svg-up");
 
-	$("#nav-historique span").text("Historique");
 	historiquebtn.addClass("current");
+	$("#nav-historique svg").removeClass("svg-down");
+	$("#nav-historique svg").addClass("svg-up");
 
+	// document.getElementById("content").src = "Historique.html";
 	window.location = "Historique.html";
 });
 
 exporterbtn.click(function() {
-	$("#nav-accueil span").text("");
 	accueilbtn.removeClass("current");
+	if($("#nav-accueil svg").hasClass("svg-up"))
+		$("#nav-accueil svg").addClass("svg-down");
+	$("#nav-accueil svg").removeClass("svg-up");
 
-	$("#nav-historique span").text("");
 	historiquebtn.removeClass("current");
+	if($("#nav-historique svg").hasClass("svg-up"))
+		$("#nav-historique svg").addClass("svg-down");
+	$("#nav-accueil svg").removeClass("svg-up");
 
-	$("#nav-exporter span").text("Exporter");
 	exporterbtn.addClass("current");
+	$("#nav-exporter svg").removeClass("svg-down");
+	$("#nav-exporter svg").addClass("svg-up");
+
+	// document.getElementById("content").src = "exportCSV.html";
+	window.location = "exportCSV.html";
 });
