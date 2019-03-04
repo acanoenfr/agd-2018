@@ -2,13 +2,25 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Introduction à JavaScript</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calendrier | JavaScript</title>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/MD.forms.css">
 </head>
-
+<header class="navbar navbar-dark bg-primary">
+    <!-- Bouton retour en SVG inline -->
+    <svg onclick="window.location='home.html';" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="white"/></svg>
+    <span class="navbar-brand mb-0 h1">ExportCSV</span>        
+</header>
 <body>
-    <p>Hello World !!!!!</p>
-    <a href="#" onclick='downloadCSV({ filename: "stock-data.csv"});'>Download CSV</a>
+    <div>
+        <p>Export CSV</p>
+        <a href="#" onclick='downloadCSV({ filename: "stock-data.csv"});'>Download CSV</a>
+    </div>
     <script src="js/exportCSV.js"></script>
 </body>
 
