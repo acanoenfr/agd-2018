@@ -200,7 +200,7 @@ button.cd-btn:focus {
 
 .body { padding-bottom: 80px; }
 
-#body a {
+#body.body-export a {
     color: #fff; 
     background: #F44336;
     text-decoration: none; 
@@ -209,7 +209,7 @@ button.cd-btn:focus {
     font-size: 16px;
 }
 
-#body {
+#body.body-export {
     display: flex;
     justify-content: center;
     align-items: center;
