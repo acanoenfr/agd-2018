@@ -115,7 +115,7 @@ function modifierDeadline() {
     let dateStart = $("#ipStart").val();            
     let dateEnd = $("#ipEnd").val();
     let ipContent = $("#ipDesc").val();
-    if (ipTitle == "" || dateStart == "" || ipTitle == null || dateStart == null) {
+    if (ipTitle == "" || ipTitle == null || dateStart == null) {
         if (ipTitle == "" || ipTitle == null) {
             $("#ipTitle").css("borderColor", "#B00020");
             $("#ipTitle").css("borderWidth", "2px");
