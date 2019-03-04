@@ -13,8 +13,38 @@
         <header class="navbar navbar-dark bg-primary">
             <span class="navbar-brand home mb-0 h1">My Deadlines</span>
         </header>
-        <iframe id="content" src="calendar.html" width="100%" frameborder="0" style="overflow:hidden;height:100%;width:100%">
-        </iframe>
+        <!-- <iframe id="content" src="calendar.html" width="100%" frameborder="0" style="overflow:hidden;height:100%;width:100%">
+        </iframe> -->
+
+        <div class="container-fluid">
+            <div class="card">
+                <div class="form-inline">
+                    <button id="previous" class="cd-btn" onclick="previous()"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/><path d="M0 0h24v24H0z" fill="none"/></svg></button>
+                    <h6 class="card-header" id="monthAndYear">Mois et année</h6>
+                    <button id="next" class="cd-btn" onclick="next()"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/><path d="M0 0h24v24H0z" fill="none"/></svg></button>
+                </div>
+                <table class="table table-bordered table-responsive-sm" id="calendar">
+                    <thead>
+                        <tr>
+                            <th>Dim</th>
+                            <th>Lun</th>
+                            <th>Mar</th>
+                            <th>Mer</th>
+                            <th>Jeu</th>
+                            <th>Ven</th>
+                            <th>Sam</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body">
+                        <!-- Days of the month -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="body"></div>
+        </div>
+        <button  type="button" class="btn-submit onhome" id="buttonSoum" onclick="window.location = 'addEvent.html'">
+            <svg class="plus-btn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="white"/></svg>
+        </button>
 
         <footer class="navbar">
             <div class="navbar-btn current" id="nav-accueil">
