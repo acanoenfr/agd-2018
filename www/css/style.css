@@ -200,6 +200,18 @@ button.cd-btn:focus {
 
 .body { padding-bottom: 80px; }
 
+#body a {
+    color: #fff; 
+    background: #F44336;
+    text-decoration: none; 
+    padding: 0.4em 0.5em;
+}
+
+#body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /*****************************/
 /* Style de la page addEvent */
