@@ -110,7 +110,7 @@ function fichierCSV() {
     
     window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory, function (dir) {
         console.log('file system open: ' + dir);
-        dir.getFile("/Download/Deadlines.csv", {
+        dir.getFile("/Documents/Deadlines.csv", {
             create: true
         }, function (file) {
             console.log("got the file", file);

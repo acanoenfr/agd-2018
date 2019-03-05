@@ -8,7 +8,7 @@ function onDeviceReady() {
 		} else {
 			permissions.requestPermission(permissions.WRITE_EXTERNAL_STORAGE, success, error);
 			function error() {
-				console.warn('Camera permission is not turned on');
+				console.warn('No storage permission');
 			}
 			function success( status ) {
 				if( !status.hasPermission ) error();
