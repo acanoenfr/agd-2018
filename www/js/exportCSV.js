@@ -109,8 +109,9 @@ db.transaction(function (tx) {
 function fichierCSV() {
     
     window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory, function (dir) {
-        console.log('file system open: ' + dir);
-        dir.getFile("/Download/Deadlines.csv", {
+    dir.getDirectory('/AGD-2018', { create: true }, function (dirAGD) {
+        console.log('file system open: ' + dirAGD.toURL());
+        dirAGD.getFile("/AGD-2018/Deadlines.csv", {
             create: true
         }, function (file) {
             console.log("got the file", file);
@@ -124,6 +125,7 @@ function fichierCSV() {
             write(csv);
           });
     });
+});
 
     function write(csv) {
         if (!logOb) return;
