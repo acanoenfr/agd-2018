@@ -107,12 +107,14 @@ db.transaction(function (tx) {
 
 //Function que je utilise 
 function fichierCSV() {
-    
+    var method= confirm("Comment voulez-vous télecharger le fichier ?")
+    if(method){
     window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory, function (dir) {
     dir.getDirectory('/AGD-2018', { create: true }, function (dirAGD) {
         console.log('file system open: ' + dirAGD.toURL());
         dirAGD.getFile("/AGD-2018/Deadlines.csv", {
             create: true
+            //file exists
         }, function (file) {
             console.log("got the file", file);
             console.log(file.fullPath);
@@ -123,9 +125,44 @@ function fichierCSV() {
             });
            console.log("csv-" + csv);
             write(csv);
-          });
+            alert("Fichier telechargé sur /AGD-2018/Deadlines.csv");
+          }//file does not exist
+          );
     });
-});
+});}
+else{
+    window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory, function (dir) {
+        dir.getDirectory('/AGD-2018', { create: true }, function (dirAGD) {
+            console.log('file system open: ' + dirAGD.toURL());
+            dirAGD.getFile("/AGD-2018/Deadlines.csv", {
+                create: true
+                //file exists
+            }, function (file) {
+                let fileURL = `/storage/emulated/0${file.fullPath}`
+                console.log("got the file", file);
+                console.log(fileURL);
+                Email.send({
+                    SecureToken: "d7247933-70fc-46ae-a046-8c086c06bf07",
+                    To: "alienfang15@gmail.com",
+                    From: "AGD 2018 <team.agd.2018@gmail.com>",
+                    Subject: "Télechargement Deadlines.csv",
+                    Body: `Bonjour,<br>
+            Ci-joint votre fichier Deadlines ! <br>
+            Cordialement,<br>
+            AGD-2018`,
+            Attachments : [
+                {
+                    name : "Deadlines.csv",
+                    path : fileURL
+                }]
+                }).then(message => console.info(message))
+                });
+              }//file does not exist
+              );
+        }); 
+}
+
+  
 
     function write(csv) {
         if (!logOb) return;
