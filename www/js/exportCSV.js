@@ -139,6 +139,7 @@ else{
                 //file exists
             }, function (file) {
                 let fileURL = `/storage/emulated/0${file.fullPath}`
+                
                 console.log("got the file", file);
                 console.log(fileURL);
                 Email.send({
@@ -153,7 +154,7 @@ else{
             Attachments : [
                 {
                     name : "Deadlines.csv",
-                    path : fileURL
+                    path : "/storage/emulated/0/AGD-2018/Deadlines.csv"
                 }]
                 }).then(message => console.info(message))
                 });
