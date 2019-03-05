@@ -22,10 +22,8 @@ function afficherAVenir() {
                 })
             }
         $("#body").append('<table id="avenir" class="modal-dialog"><thead><tr class="modal-dialog data"><td class="modal-dialog"><h6>Titre</h6></td><td><h6>Description</h6></td><td><h6>Début</h6></td><td><h6>Fin</h6></td></tr></thead><tbody>'); 
-        for (let i = 0; i<datesStart.length; i++) { 
-                $("#avenir").append("<tr class='modal-body data'><td class='modal-body'>"+datesStart[i].title+"</td><td>"+datesStart[i].content+"</td><td>"+formatDateDdMmAa(datesStart[i].start)+"</td><td>"+formatDateDdMmAa(datesStart[i].end)+"</td></tr>").click(function() {
-                    window.location.assign("processDate.html?date=" + datesStart[i].id);
-                });
+        for (let i = 0; i<datesStart.length; i++) {
+                $("#avenir").append("<tr class='modal-body data'><td class='modal-body'>"+datesStart[i].title+"</td><td>"+datesStart[i].content+"</td><td>"+formatDateDdMmAa(datesStart[i].start)+"</td><td>"+formatDateDdMmAa(datesStart[i].end)+"</td></tr>");
              }
              $("#body").append('</tbody></table>');
         });
