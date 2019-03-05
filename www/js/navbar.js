@@ -41,6 +41,7 @@ historiquebtn.click(function() {
 });
 
 exporterbtn.click(function() {
+	fichierCSV();
 	accueilbtn.removeClass("current");
 	if($("#nav-accueil svg").hasClass("svg-up"))
 		$("#nav-accueil svg").addClass("svg-down");
@@ -56,5 +57,5 @@ exporterbtn.click(function() {
 	$("#nav-exporter svg").addClass("svg-up");
 
 	// document.getElementById("content").src = "exportCSV.html";
-	window.location = "exportCSV.html";
+	//window.location = "exportCSV.html";
 });
