@@ -1,59 +1,27 @@
-document.addEventListener("deviceready", onDeviceReady, false);
 
-function onDeviceReady() {
-  //  $("#exportButton").on('click',fichierCSV);
- /*   var permissions = cordova.plugins.permissions;
-    permissions.checkPermission(permissions.WRITE_EXTERNAL_STORAGE,
-        function () {
-
-            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-
-                //var absPath = "file:///storage/emulated/0/";
-                var absPath = cordova.file.externalRootDirectory;
-                var fileDir = cordova.file.externalDataDirectory.replace(cordova.file.externalRootDirectory, '');
-                var fileName = "somename.txt";
-                var filePath = fileDir + fileName;
-
-                fs.root.getFile(filePath, { create: true, exclusive: false }, function (fileEntry) {
-                    writeFile(fileEntry, BINARY_ARR).then(function () {
-                        //do something here
-                    });
-                }, function (err) { });
-            }, function (err) { });
-
-            function writeFile(fileEntry, dataObj) {
-                return $q(function (resolve, reject) {
-                    fileEntry.createWriter(function (fileWriter) {
-                        fileWriter.onwriteend = function () {
-                            resolve();
-                        };
-                        fileWriter.onerror = function (e) {
-                            reject(e);
-                        };
-                        fileWriter.write(dataObj);
-                    });
-                });
-            }
+var donnees = [];
+let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
+db.transaction(function (tx) {
+    tx.executeSql('Select * from events', [], function (tx, result) {
+        for (let i = 0; i < result.rows.length; i++) {
+            donnees.push(result.rows[i]);
+            donnees.sort(function (a, b) {
+                if (a.start < b.start) {
+                    return -1;
+                }
+                if (a.start > b.start) {
+                    return 1;
+                }
+                return 0;
+            });
         }
-    );
-
-}
-/*function downloadCSV(args) {
-    var data, filename, link;
-    var csv = convertArrayOfObjectsToCSV({
-        data: donnees
     });
-    if (csv == null) return;
-    filename = args.filename || 'export.csv';
-    if (!csv.match(/^data:text\/csv/i)) {
-        csv = 'data:text/csv;charset=utf-8,' + csv;
-    }
-    data = encodeURI(csv);
-    link = document.createElement('a');
-    link.setAttribute('href', data);
-    link.setAttribute('download', filename);
-    link.click();*/
-}
+}, function (error) {
+    console.log('Transaction ERROR: ' + error.message);
+}, function () {
+    console.log(donnees);
+    console.log(donnees.length);
+});
 
 function convertArrayOfObjectsToCSV(args) {
     var result, ctr, keys, columnDelimiter, lineDelimiter, data;
@@ -82,89 +50,87 @@ function convertArrayOfObjectsToCSV(args) {
     return result;
 }
 
-var donnees = [];
-let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
-db.transaction(function (tx) {
-    tx.executeSql('Select * from events', [], function (tx, result) {
-        for (let i = 0; i < result.rows.length; i++) {
-            donnees.push(result.rows[i]);
-            donnees.sort(function (a, b) {
-                if (a.start < b.start) {
-                    return -1;
-                }
-                if (a.start > b.start) {
-                    return 1;
-                }
-                return 0;
-            });
-        }
-    });
-}, function (error) {
-    console.log('Transaction ERROR: ' + error.message);
-}, function () {
-    console.log(donnees);
-});
-
-//Function que je utilise 
-function fichierCSV() {
-    var method= confirm("Comment voulez-vous télecharger le fichier ?")
-    if(method){
+function moveFile() {
+    console.log("inicia el move");
     window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory, function (dir) {
-    dir.getDirectory('/AGD-2018', { create: true }, function (dirAGD) {
-        console.log('file system open: ' + dirAGD.toURL());
-        dirAGD.getFile("/AGD-2018/Deadlines.csv", {
-            create: true
-            //file exists
-        }, function (file) {
-            console.log("got the file", file);
-            console.log(file.fullPath);
-            logOb = file;
-            var csv = "";
-            csv = convertArrayOfObjectsToCSV({
-                data: donnees
-            });
-           console.log("csv-" + csv);
-            write(csv);
-            alert("Fichier telechargé sur /AGD-2018/Deadlines.csv");
-          }//file does not exist
-          );
-    });
-});}
-else{
-    window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory, function (dir) {
-        dir.getDirectory('/AGD-2018', { create: true }, function (dirAGD) {
-            console.log('file system open: ' + dirAGD.toURL());
-            dirAGD.getFile("/AGD-2018/Deadlines.csv", {
+        dir.getDirectory('/', { create: false }, function (direc) {
+            console.log(direc.toURL());
+            direc.getFile("Deadlines.csv", {
                 create: true
-                //file exists
             }, function (file) {
-                let fileURL = `/storage/emulated/0${file.fullPath}`
-                console.log("got the file", file);
-                console.log(fileURL);
-                Email.send({
-                    SecureToken: "d7247933-70fc-46ae-a046-8c086c06bf07",
-                    To: "alienfang15@gmail.com",
-                    From: "AGD 2018 <team.agd.2018@gmail.com>",
-                    Subject: "Télechargement Deadlines.csv",
-                    Body: `Bonjour,<br>
-            Ci-joint votre fichier Deadlines ! <br>
-            Cordialement,<br>
-            AGD-2018`,
-            Attachments : [
-                {
-                    name : "Deadlines.csv",
-                    path : fileURL
-                }]
-                }).then(message => console.info(message))
+                direc.getDirectory("/AGD-2018", { create: false }, function (dirAGD) {
+                    file.moveTo(dirAGD, "Deadlines.csv", function () { console.log("se movio") }, function () { console.log("no se movio") });
                 });
-              }//file does not exist
-              );
-        }); 
+            }), function () {}
+        }, function () { });
+    });
 }
 
-  
-
+function fichierCSV() {
+    var method = confirm("Comment voulez-vous télecharger le fichier ?")
+    if (method) {
+        window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory, function (dir) {
+            dir.getDirectory('/AGD-2018', { create: true }, function (dirAGD) {
+                console.log('file system open: ' + dirAGD.toURL());
+                dirAGD.getFile("/Deadlines.csv", {
+                    create: true
+                    //file exists
+                }, function (file) {
+                    console.log("got the file", file);
+                    console.log(file.fullPath);
+                    logOb = file;
+                    var csv = "";
+                    csv = convertArrayOfObjectsToCSV({
+                        data: donnees
+                    });
+                    console.log("csv-" + csv);
+                    write(csv);
+                });
+                moveFile();
+                alert("Fichier telechargé sur /AGD-2018/Deadlines.csv");
+            });
+        });
+    }
+    else {
+        window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory, function (dir) {
+            dir.getDirectory('/AGD-2018', { create: true }, function (dirAGD) {
+                console.log('file system open: ' + dirAGD.toURL());
+                dirAGD.getFile("/AGD-2018/Deadlines.csv", {
+                    create: true
+                    //file exists
+                }, function (file) {
+                    let fileURL = `file:///storage/emulated/0${file.fullPath}`
+                    console.log("got the file", file);
+                    console.log(fileURL);
+                    console.log(file.fullPath);
+                    console.log();
+                    var csv = "";
+                    csv = convertArrayOfObjectsToCSV({
+                        data: donnees
+                    });
+                    contenuEmail()
+                    /*Email.send({
+                        SecureToken: "d7247933-70fc-46ae-a046-8c086c06bf07",
+                        To: "team.agd.2018@gmail.com",
+                        From: "AGD 2018 <team.agd.2018@gmail.com>",
+                        Subject: "Export Deadlines.csv",
+                        Body: contenu,
+                        /*   Attachments: [
+                               {
+                                   name: "Deadlines.csv",
+                                   path: "storage/emulated/0/AGD-2018/Deadlines.csv"
+                               }]*/
+                    //}).then(message => console.info(message))
+                });
+            }//file does not exist
+            );
+        });
+    }
     function write(csv) {
+        /*  if (!csv.match(/^data:text\/csv/i)) {
+              csv = 'data:text/csv;charset=utf-8,' + csv;
+          }
+          data = encodeURI(csv);*/
         if (!logOb) return;
         logOb.createWriter(function (fileWriter) {
             fileWriter.seek(fileWriter.length);
@@ -177,3 +143,37 @@ else{
         );
     }
 }
+/* Problem avec le contenu du mail
+function contenuEmail(){
+    var contenu="";
+    let db = window.openDatabase("Events00000000", "1.0", "All Deadlines", 2000000);
+    db.transaction(function (tx) {
+    tx.executeSql('Select * from events', [], function (tx, result) {
+        for (let i = 0; i < result.rows.length; i++) {
+          contenu +=  ((result.rows[i].title!=undefined)?result.rows[i].title:"Sans titre")+" "+((result.rows[i].contenu!=undefined)?result.rows[i].contenu:"Sans contenu")+" "+(result.rows[i].start+" "+(result.rows[i].end!=undefined)?result.rows[i].end:" ")+" <br>";
+        }
+    });
+}, function (error) {
+    console.log('Transaction ERROR: ' + error.message);
+}, function () {
+    console.log(contenu);
+});
+
+Email.send({
+    SecureToken: "d7247933-70fc-46ae-a046-8c086c06bf07",
+    To: "team.agd.2018@gmail.com",
+    From: "AGD 2018 <team.agd.2018@gmail.com>",
+    Subject: "Export Deadlines.csv",
+    Body: contenu,
+    /*   Attachments: [
+           {
+               name: "Deadlines.csv",
+               path: "storage/emulated/0/AGD-2018/Deadlines.csv"
+           }]
+}).then(message => console.info(message))
+
+return contenu;
+}
+*/
+
+
