@@ -104,12 +104,12 @@ function fichierCSV() {
                     console.log(fileURL);
                     console.log(file.fullPath);
                     console.log();
-                    var csv = "";
+                    /*var csv = "";
                     csv = convertArrayOfObjectsToCSV({
                         data: donnees
                     });
                     contenuEmail()
-                    /*Email.send({
+                    Email.send({
                         SecureToken: "d7247933-70fc-46ae-a046-8c086c06bf07",
                         To: "team.agd.2018@gmail.com",
                         From: "AGD 2018 <team.agd.2018@gmail.com>",
