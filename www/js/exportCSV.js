@@ -19,8 +19,6 @@ db.transaction(function (tx) {
 }, function (error) {
     console.log('Transaction ERROR: ' + error.message);
 }, function () {
-    console.log(donnees);
-    console.log(donnees.length);
 });
 
 function convertArrayOfObjectsToCSV(args) {
@@ -51,15 +49,13 @@ function convertArrayOfObjectsToCSV(args) {
 }
 
 function moveFile() {
-    console.log("inicia el move");
     window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory, function (dir) {
         dir.getDirectory('/', { create: false }, function (direc) {
-            console.log(direc.toURL());
             direc.getFile("Deadlines.csv", {
                 create: true
             }, function (file) {
                 direc.getDirectory("/AGD-2018", { create: false }, function (dirAGD) {
-                    file.moveTo(dirAGD, "Deadlines.csv", function () { console.log("se movio") }, function () { console.log("no se movio") });
+                    file.moveTo(dirAGD, "Deadlines.csv", function () { }, function () { });
                 });
             }), function () {}
         }, function () { });
@@ -67,7 +63,7 @@ function moveFile() {
 }
 
 function fichierCSV() {
-    var method = confirm("Comment voulez-vous télecharger le fichier ?")
+    var method = confirm("Voulez-vous télecharger le fichier ?")
     if (method) {
         window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory, function (dir) {
             dir.getDirectory('/AGD-2018', { create: true }, function (dirAGD) {
@@ -76,8 +72,6 @@ function fichierCSV() {
                     create: true
                     //file exists
                 }, function (file) {
-                    console.log("got the file", file);
-                    console.log(file.fullPath);
                     logOb = file;
                     var csv = "";
                     csv = convertArrayOfObjectsToCSV({
@@ -91,7 +85,7 @@ function fichierCSV() {
             });
         });
     }
-    else {
+    /*else {
         window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory, function (dir) {
             dir.getDirectory('/AGD-2018', { create: true }, function (dirAGD) {
                 console.log('file system open: ' + dirAGD.toURL());
@@ -99,11 +93,6 @@ function fichierCSV() {
                     create: true
                     //file exists
                 }, function (file) {
-                    let fileURL = `file:///storage/emulated/0${file.fullPath}`
-                    console.log("got the file", file);
-                    console.log(fileURL);
-                    console.log(file.fullPath);
-                    console.log();
                     /*var csv = "";
                     csv = convertArrayOfObjectsToCSV({
                         data: donnees
@@ -119,18 +108,14 @@ function fichierCSV() {
                                {
                                    name: "Deadlines.csv",
                                    path: "storage/emulated/0/AGD-2018/Deadlines.csv"
-                               }]*/
+                               }]
                     //}).then(message => console.info(message))
                 });
             }//file does not exist
             );
         });
-    }
+    }*/
     function write(csv) {
-        /*  if (!csv.match(/^data:text\/csv/i)) {
-              csv = 'data:text/csv;charset=utf-8,' + csv;
-          }
-          data = encodeURI(csv);*/
         if (!logOb) return;
         logOb.createWriter(function (fileWriter) {
             fileWriter.seek(fileWriter.length);
